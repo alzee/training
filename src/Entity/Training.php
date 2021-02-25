@@ -32,6 +32,18 @@ class Training
      */
     private $date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Trainer::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $trainer;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Status::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $status;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +81,30 @@ class Training
     public function setDate(\DateTimeImmutable $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getTrainer(): ?Trainer
+    {
+        return $this->trainer;
+    }
+
+    public function setTrainer(?Trainer $trainer): self
+    {
+        $this->trainer = $trainer;
+
+        return $this;
+    }
+
+    public function getStatus(): ?Status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?Status $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
