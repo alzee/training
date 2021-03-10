@@ -3,7 +3,17 @@ Name: 名称
 Date: 日期
 Quantity: 数量
 Trainee: 档案
+Trainer: 教练
 Training: 训练
 Checkin: 签到
 Description: 描述
 Title: 标题
+Age: 年龄
+Sex: 性别
+Status: 身份
+Politics: 政治面貌
+Area: 所属区域
+Phone: 手机
+Idnum: 身份证号
+Address: 联系地址
+Skill: 技能

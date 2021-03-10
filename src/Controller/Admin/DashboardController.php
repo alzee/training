@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use App\Entity\Trainee;
+use App\Entity\Trainer;
 use App\Entity\Training;
 use App\Entity\Checkin;
 
@@ -40,12 +41,13 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         
         yield MenuItem::linkToCrud('档案管理', 'fa fa-tags', Trainee::class);
+        yield MenuItem::linkToCrud('教练管理', 'fa fa-tags', Trainer::class);
 
         yield MenuItem::subMenu('训练记录', 'fa fa-tags')->setSubItems([
             //MenuItem::linkToRoute('仓库统计', '', 'warehouse_stat'),
             MenuItem::linkToCrud('当前训练', '', Trainee::class),
             MenuItem::linkToCrud('添加训练', '', Training::class)->setAction('new'),
-            MenuItem::linkToCrud('训练记录', '', Training::class),
+            MenuItem::linkToCrud('训练管理', '', Training::class),
         ]);
 
         yield MenuItem::linkToCrud('签到管理', 'fa fa-tags', Checkin::class);

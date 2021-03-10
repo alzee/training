@@ -40,7 +40,7 @@ class Training
 
     /**
      * @ORM\ManyToOne(targetEntity=Status::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $status;
 
@@ -107,5 +107,11 @@ class Training
         $this->status = $status;
 
         return $this;
+    }
+
+    public function __construct()
+    {
+        $this->date = new \DateTimeImmutable();
+        $this->date = $this->date->setTimezone(new \DateTimeZone('Asia/Shanghai'));
     }
 }
