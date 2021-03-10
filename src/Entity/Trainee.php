@@ -35,7 +35,7 @@ class Trainee
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $status;
+    private $pstatus;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -108,14 +108,14 @@ class Trainee
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getPstatus(): ?string
     {
-        return $this->status;
+        return $this->pstatus;
     }
 
-    public function setStatus(string $status): self
+    public function setPstatus(string $pstatus): self
     {
-        $this->status = $status;
+        $this->pstatus = $pstatus;
 
         return $this;
     }

@@ -10,8 +10,9 @@ Description: 描述
 Title: 标题
 Age: 年龄
 Sex: 性别
-Status: 身份
-training.status: 状态
+Status: 状态
+pStatus: 身份
+checkin.trainee: 学员
 Politics: 政治面貌
 Area: 所属区域
 Phone: 手机

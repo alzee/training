@@ -114,4 +114,9 @@ class Training
         $this->date = new \DateTimeImmutable();
         $this->date = $this->date->setTimezone(new \DateTimeZone('Asia/Shanghai'));
     }
+
+    public function __toString(): string
+    {
+        return $this->title;
+    }
 }
