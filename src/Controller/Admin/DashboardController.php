@@ -34,36 +34,19 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoDashboard('数据统计', 'fa fa-home');
+        yield MenuItem::linktoDashboard('综合统计', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         
-        yield MenuItem::subMenu('仓库管理 ', 'fa fa-tags')->setSubItems([
+        yield MenuItem::linkToCrud('档案管理', 'fa fa-tags', Trainee::class);
+
+        yield MenuItem::subMenu('训练记录', 'fa fa-tags')->setSubItems([
             //MenuItem::linkToRoute('仓库统计', '', 'warehouse_stat'),
-            MenuItem::linkToCrud('区域管理', '', Trainee::class),
-            MenuItem::linkToCrud('1号仓库', '', Trainee::class),
-            MenuItem::linkToCrud('2号仓库', '', Trainee::class),
+            MenuItem::linkToCrud('当前训练', '', Trainee::class),
+            MenuItem::linkToCrud('添加训练', '', Trainee::class),
+            MenuItem::linkToCrud('训练记录', '', Trainee::class),
         ]);
 
-        yield MenuItem::subMenu('物品管理 ', 'fa fa-tags')->setSubItems([
-            //MenuItem::linkToRoute('物品分布', '', 'item_dist'),
-            MenuItem::linkToCrud('物品类别', '', Trainee::class),
-            MenuItem::linkToCrud('物品列表', '', Trainee::class),
-            MenuItem::linkToCrud('物品入库', '', Trainee::class)->setAction('new'),
-        ]);
-
-        yield MenuItem::subMenu('物品领用', 'fa fa-tags')->setSubItems([
-            MenuItem::linkToCrud('领用单', '', Trainee::class)->setAction('new'),
-            MenuItem::linkToCrud('归还单', '', Trainee::class)->setAction('new'),
-            MenuItem::linkToCrud('损耗单', '', Trainee::class)->setAction('new'),
-            MenuItem::linkToCrud('使用中', '', Trainee::class),
-        ]);
-
-        yield MenuItem::subMenu('仓库日志', 'fa fa-tags')->setSubItems([
-            MenuItem::linkToCrud('入库记录', '', Trainee::class),
-            MenuItem::linkToCrud('领用记录', '', Trainee::class),
-            MenuItem::linkToCrud('归还记录', '', Trainee::class),
-            MenuItem::linkToCrud('损耗记录', '', Trainee::class),
-        ]);
+        yield MenuItem::linkToCrud('签到管理', 'fa fa-tags', Trainee::class);
 
         //yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
     }
