@@ -22,7 +22,7 @@ class TrainingCrudController extends AbstractCrudController
         return [
             IdField::new('id')->onlyOnIndex(),
             AssociationField::new('trainer'),
-            AssociationField::new('status')->onlyOnIndex(),
+            AssociationField::new('status', 'training.status'), //->onlyOnIndex(),
             TextField::new('title'),
             TextareaField::new('description'),
             DateTimeField::new('date')->onlyOnIndex(),
