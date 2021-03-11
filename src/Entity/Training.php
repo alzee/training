@@ -51,6 +51,11 @@ class Training
      */
     private $trainees;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Checkin::class, mappedBy="training")
+     */
+    private $checkins;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +126,7 @@ class Training
         $this->date = new \DateTimeImmutable();
         $this->date = $this->date->setTimezone(new \DateTimeZone('Asia/Shanghai'));
         $this->trainees = new ArrayCollection();
+        $this->checkins = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -150,6 +156,36 @@ class Training
     {
         if ($this->trainees->removeElement($trainee)) {
             $trainee->removeTraining($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Checkin[]
+     */
+    public function getCheckins(): Collection
+    {
+        return $this->checkins;
+    }
+
+    public function addCheckin(Checkin $checkin): self
+    {
+        if (!$this->checkins->contains($checkin)) {
+            $this->checkins[] = $checkin;
+            $checkin->setTraining($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCheckin(Checkin $checkin): self
+    {
+        if ($this->checkins->removeElement($checkin)) {
+            // set the owning side to null (unless already changed)
+            if ($checkin->getTraining() === $this) {
+                $checkin->setTraining(null);
+            }
         }
 
         return $this;

@@ -29,7 +29,7 @@ class Checkin
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Training::class)
+     * @ORM\ManyToOne(targetEntity=Training::class, inversedBy="checkins")
      * @ORM\JoinColumn(nullable=false)
      */
     private $training;
@@ -63,6 +63,12 @@ class Checkin
         return $this;
     }
 
+    public function __construct()
+    {
+        $this->date = new \DateTimeImmutable();
+        $this->date = $this->date->setTimezone(new \DateTimeZone('Asia/Shanghai'));
+    }
+
     public function getTraining(): ?Training
     {
         return $this->training;
@@ -73,11 +79,5 @@ class Checkin
         $this->training = $training;
 
         return $this;
-    }
-
-    public function __construct()
-    {
-        $this->date = new \DateTimeImmutable();
-        $this->date = $this->date->setTimezone(new \DateTimeZone('Asia/Shanghai'));
     }
 }
