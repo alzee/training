@@ -37,6 +37,13 @@ let data4 = {
       data: [d4, countTrainees - d4]
     }]
 };
+let data5 = {
+  labels: ['签到', '未到'],
+  datasets: [{
+    backgroundColor: ['#0dcaf0'],
+    data: [ctx5.dataset.checkins, ctx5.dataset.shouldcome - ctx5.dataset.checkins]
+  }]
+};
 
 for (let i = 0; i < d1.length; i++){
   data1.labels.push((d1[i].dataset.area));
@@ -104,14 +111,7 @@ let chart4 = new Chart(ctx4, {
 
 let chart5 = new Chart(ctx5, {
     type: 'doughnut',
-    //data: data,
-    data: {
-        labels: [],
-        datasets: [{
-            backgroundColor: ['#0dcaf0'],
-            data: [40,60]
-        }]
-    },
+    data: data5,
     options: {
       legend: {
         display: false,
