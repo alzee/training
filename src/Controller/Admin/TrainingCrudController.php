@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Training;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -27,10 +29,11 @@ class TrainingCrudController extends AbstractCrudController
         return [
             IdField::new('id')->onlyOnIndex(),
             TextField::new('title'),
-            TextareaField::new('description'),
+            TextareaField::new('description')->setMaxLength(6)->onlyOnIndex(),
+            TextareaField::new('description')->hideOnIndex(),
             AssociationField::new('trainer'),
             AssociationField::new('trainees', 'shouldCome'),
-            AssociationField::new('checkins', 'come')->onlyOnIndex(),
+            AssociationField::new('checkins', 'come')->hideOnForm(),
             DateField::new('startAt'),
             DateField::new('endAt'),
             AssociationField::new('status'), //->onlyOnIndex(),
@@ -45,4 +48,13 @@ class TrainingCrudController extends AbstractCrudController
             ->setPageTitle('index', '%entity_label_plural% 列表')
         ;
     }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
+            //->add(Crud::PAGE_EDIT, Action::SAVE_AND_ADD_ANOTHER)
+        ;
+    }
+
 }

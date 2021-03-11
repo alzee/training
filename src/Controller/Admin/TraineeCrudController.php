@@ -52,12 +52,11 @@ class TraineeCrudController extends AbstractCrudController
         ];
     }
 
-
     public function configureActions(Actions $actions): Actions
     {
         return $actions
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
-            ->add(Crud::PAGE_EDIT, Action::SAVE_AND_ADD_ANOTHER)
+            //->add(Crud::PAGE_EDIT, Action::SAVE_AND_ADD_ANOTHER)
         ;
     }
 
