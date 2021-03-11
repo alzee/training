@@ -1,7 +1,16 @@
-filter operand
-translations override defined
-batch action
-charts
+major:
+  - filter operand
+  - batch action
+  - get list of relations
+  - charts
 
-assosiation default value
-assosiation form require
+minor:
+  - assosiation default value
+  - assosiation form require
+
+
+questions:
+
+
+
+# vim:ft=yaml
