@@ -3,17 +3,13 @@ major:
   - batch action
   - get list of relations
   - charts
+  - pic upload
 
 minor:
-  - assosiation default value
+  - assosiation default value (training status)
   - assosiation form require
 
-
 questions:
-  - 期 是训练的单位？
-  - 几种状态
-  - 照片怎么来
-  - 技能 身份 政治面貌 怎么管理
 
 
 

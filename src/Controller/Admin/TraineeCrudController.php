@@ -26,7 +26,7 @@ class TraineeCrudController extends AbstractCrudController
     private $pstatus = ['民兵' => 0,'退伍军人' => 1, '军人' => 2];
     private $politics = ['群众' => 0,'党员' => 1, '团员' => 2];
     private $sex = ['男' => 0,'女' => 1];
-    //private $areas = ['宝丰镇' => 0,'城关镇' => 1, '楼塔乡'];
+    private $areas = ['宝丰镇' => 0,'城关镇' => 1, '楼塔乡' => 2];
 
     public static function getEntityFqcn(): string
     {
@@ -42,7 +42,7 @@ class TraineeCrudController extends AbstractCrudController
             ChoiceField::new('sex')->setChoices($this->sex)->renderExpanded(true),
             ChoiceField::new('pstatus')->setChoices($this->pstatus),
             ChoiceField::new('politics')->setChoices($this->politics),
-            TextField::new('area'),
+            ChoiceField::new('area')->setChoices($this->areas),
             TextField::new('phone'),
             TextField::new('address'),
             TextField::new('idnum'),
