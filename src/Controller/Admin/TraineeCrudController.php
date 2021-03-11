@@ -45,10 +45,9 @@ class TraineeCrudController extends AbstractCrudController
             TextField::new('phone'),
             TextField::new('address'),
             TextField::new('idnum'),
-            ChoiceField::new('skill')->setChoices($this->skills),
             ChoiceField::new('skills')->setChoices($this->skills)->allowMultipleChoices(true),
-            //ArrayField::new('skill'),
-            //CollectionField::new('skill'),
+            //ArrayField::new('skills'),
+            //CollectionField::new('skills'),
         ];
     }
 
