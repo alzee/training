@@ -7,6 +7,7 @@ let countTrainees = document.getElementById('countTrainees').dataset.count;
 let d1 = document.querySelectorAll('.areaPeople');
 let d2 = document.querySelectorAll('.ageGroup');
 let d3 = ctx3.dataset.soldiers;
+let d4 = ctx4.dataset.partymembers;
 let data1 = {
   labels: [],
   datasets: [{
@@ -28,6 +29,13 @@ let data3 = {
     backgroundColor: ['#0dcaf0'],
     data: [d3, countTrainees - d3]
   }]
+};
+let data4 = {
+  labels: ['党员', '其他'],
+    datasets: [{
+      backgroundColor: ['#0dcaf0'],
+      data: [d4, countTrainees - d4]
+    }]
 };
 
 for (let i = 0; i < d1.length; i++){
@@ -86,14 +94,7 @@ let chart3 = new Chart(ctx3, {
 
 let chart4 = new Chart(ctx4, {
     type: 'doughnut',
-    //data: data,
-    data: {
-        labels: [],
-        datasets: [{
-            backgroundColor: ['#0dcaf0'],
-            data: [90,10]
-        }]
-    },
+    data: data4,
     options: {
       legend: {
         display: false,
