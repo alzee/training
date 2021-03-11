@@ -55,7 +55,7 @@ class Trainee
     private $phone;
 
     /**
-     * @ORM\Column(type="string", length=18)
+     * @ORM\Column(type="string", length=18, nullable=true)
      */
     private $idnum;
 
