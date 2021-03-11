@@ -8,8 +8,17 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
+ * @ApiResource(
+ * normalizationContext={"groups"={"trainee:read"}},
+ * denormalizationContext={"groups"={"trainee:write"}}
+ * )
+ * @ApiFilter(SearchFilter::class, properties={"id": "exact"})
  * @ORM\Entity(repositoryClass=TraineeRepository::class)
  */
 class Trainee
@@ -17,16 +26,21 @@ class Trainee
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
+     * @Groups({"trainee:read"})
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
+     * @Groups({"training:read"})
+     * @Groups({"trainee:read", "trainee:write"})
      * @ORM\Column(type="string", length=20)
      */
     private $name;
 
     /**
+     * @Groups({"training:read"})
+     * @Groups({"trainee:read", "trainee:write"})
      * @ORM\Column(type="integer")
      */
     private $age;
@@ -37,6 +51,8 @@ class Trainee
     private $sex;
 
     /**
+     * @Groups({"training:read"})
+     * @Groups({"trainee:read", "trainee:write"})
      * @ORM\Column(type="string", length=255)
      */
     private $pstatus;
@@ -47,6 +63,8 @@ class Trainee
     private $politics;
 
     /**
+     * @Groups({"training:read"})
+     * @Groups({"trainee:read", "trainee:write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $area;
@@ -78,6 +96,7 @@ class Trainee
     private $skills = [];
 
     /**
+     * @Groups({"trainee:read", "trainee:write"})
      * @ORM\ManyToMany(targetEntity=Training::class, inversedBy="trainees")
      */
     private $training;

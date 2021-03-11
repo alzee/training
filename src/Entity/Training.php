@@ -6,8 +6,14 @@ use App\Repository\TrainingRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
+ * @ApiResource(
+ * normalizationContext={"groups"={"training:read"}},
+ * denormalizationContext={"groups"={"training:write"}}
+ * )
  * @ORM\Entity(repositoryClass=TrainingRepository::class)
  */
 class Training
@@ -15,16 +21,22 @@ class Training
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
+     * @Groups({"trainee:read"})
+     * @Groups({"training:read"})
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
+     * @Groups({"trainee:read"})
+     * @Groups({"training:read", "training:write"})
      * @ORM\Column(type="string", length=50)
      */
     private $title;
 
     /**
+     * @Groups({"trainee:read"})
+     * @Groups({"training:read", "training:write"})
      * @ORM\Column(type="string", length=255)
      */
     private $description;
@@ -47,11 +59,15 @@ class Training
     private $status;
 
     /**
+     * @Groups({"trainee:read"})
+     * @Groups({"training:read", "training:write"})
      * @ORM\ManyToMany(targetEntity=Trainee::class, mappedBy="training")
      */
     private $trainees;
 
     /**
+     * @Groups({"trainee:read"})
+     * @Groups({"training:read", "training:write"})
      * @ORM\OneToMany(targetEntity=Checkin::class, mappedBy="training")
      */
     private $checkins;
@@ -67,6 +83,8 @@ class Training
     private $endAt;
 
     /**
+     * @Groups({"trainee:read"})
+     * @Groups({"training:read", "training:write"})
      * @ORM\Column(type="string", length=15)
      */
     private $instructor;
