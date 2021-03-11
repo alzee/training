@@ -22,12 +22,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class TraineeCrudController extends AbstractCrudController
 {
-    private $skills = ['急救护理' => 0,'特殊装备操作' => 1, '机动车驾驶' => 2];
-    private $pstatus = ['民兵' => 0,'退伍军人' => 1, '军人' => 2];
-    private $politics = ['群众' => 0,'党员' => 1, '团员' => 2];
-    private $sex = ['男' => 0,'女' => 1];
-    private $areas = ['宝丰镇' => 0,'城关镇' => 1, '楼塔乡' => 2];
-
     public static function getEntityFqcn(): string
     {
         return Trainee::class;
@@ -39,15 +33,15 @@ class TraineeCrudController extends AbstractCrudController
             IdField::new('id')->onlyOnIndex(),
             TextField::new('name'),
             IntegerField::new('age'),
-            ChoiceField::new('sex')->setChoices($this->sex)->renderExpanded(true),
-            ChoiceField::new('pstatus')->setChoices($this->pstatus),
-            ChoiceField::new('politics')->setChoices($this->politics),
-            ChoiceField::new('area')->setChoices($this->areas),
+            ChoiceField::new('sex')->setChoices(Trainee::$sexes)->renderExpanded(true),
+            ChoiceField::new('pstatus')->setChoices(Trainee::$pstatuses),
+            ChoiceField::new('politics')->setChoices(Trainee::$allPolitics),
+            ChoiceField::new('area')->setChoices(Trainee::$areas),
             TextField::new('phone'),
             TextField::new('address'),
             TextField::new('idnum'),
             AssociationField::new('training'), //->hideOnForm(),
-            ChoiceField::new('skills')->setChoices($this->skills)->allowMultipleChoices(true),
+            ChoiceField::new('skills')->setChoices(Trainee::$allSkills)->allowMultipleChoices(true),
             //ArrayField::new('skills'),
             //CollectionField::new('skills'),
         ];
@@ -66,9 +60,9 @@ class TraineeCrudController extends AbstractCrudController
         return $filters
             ->add('area')
             ->add('age')
-            ->add(ChoiceFilter::new('pstatus')->setChoices($this->pstatus)) //->setFormTypeOption('comparison_type', 'ArrayFilter'))
-            ->add(ChoiceFilter::new('politics')->setChoices($this->politics))
-            ->add(ChoiceFilter::new('skills')->setChoices($this->skills))
+            ->add(ChoiceFilter::new('pstatus')->setChoices(Trainee::$pstatuses)) //->setFormTypeOption('comparison_type', 'ArrayFilter'))
+            ->add(ChoiceFilter::new('politics')->setChoices(Trainee::$allPolitics))
+            ->add(ChoiceFilter::new('skills')->setChoices(Trainee::$allSkills))
             //->add(ChoiceFilter::new('skills')->setChoices($this->skills)->canSelectMultiple(true))
         ;
     }

@@ -49,6 +49,12 @@ class Trainee
      */
     private $area;
 
+    static $allSkills = ['急救护理' => 0,'特殊装备操作' => 1, '机动车驾驶' => 2];
+    static $pstatuses = ['民兵' => 0,'退伍军人' => 1, '军人' => 2];
+    static $allPolitics = ['群众' => 0,'党员' => 1, '团员' => 2];
+    static $sexes = ['男' => 0,'女' => 1];
+    static $areas = ['宝丰镇' => 0,'城关镇' => 1, '楼塔乡' => 2];
+
     /**
      * @ORM\Column(type="string", length=15, nullable=true)
      */
