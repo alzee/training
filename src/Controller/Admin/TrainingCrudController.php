@@ -29,6 +29,7 @@ class TrainingCrudController extends AbstractCrudController
             TextareaField::new('description'),
             AssociationField::new('trainer'),
             AssociationField::new('trainees', 'shouldCome'),
+            AssociationField::new('checkins', 'come')->onlyOnIndex(),
             AssociationField::new('status'), //->onlyOnIndex(),
             //ChoiceField::new('status')->setChoices($this->statuses),
             //DateTimeField::new('date')->onlyOnIndex(),
