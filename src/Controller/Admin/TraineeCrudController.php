@@ -68,7 +68,8 @@ class TraineeCrudController extends AbstractCrudController
             ->add('age')
             ->add(ChoiceFilter::new('pstatus')->setChoices($this->pstatus))
             ->add(ChoiceFilter::new('politics')->setChoices($this->politics))
-            ->add(ChoiceFilter::new('skills')->setChoices($this->skills)->canSelectMultiple(true))
+            ->add(ChoiceFilter::new('skills')->setChoices($this->skills))
+            //->add(ChoiceFilter::new('skills')->setChoices($this->skills)->canSelectMultiple(true))
         ;
     }
 }
