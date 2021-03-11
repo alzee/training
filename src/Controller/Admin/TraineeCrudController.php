@@ -72,4 +72,11 @@ class TraineeCrudController extends AbstractCrudController
             //->add(ChoiceFilter::new('skills')->setChoices($this->skills)->canSelectMultiple(true))
         ;
     }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->overrideTemplate('crud/detail', 'bundles/EasyAdminBundle/crud/detail.html.twig')
+        ;
+    }
 }
