@@ -10,44 +10,50 @@
   <div class="badge d-flex justify-content-between">
     <div class="bg-success text-light p-3 px-5 h4 rounded">
       <p>在编人数</p>
-      <p class="m-0">123人</p>
+      <p class="m-0" id="countTrainees">{{countTrainees}}</p>
     </div>
     <div class="bg-primary text-light p-3 px-5 h4 rounded">
       <p>人脸数据</p>
-      <p class="m-0">123件</p>
+      <p class="m-0">{{countFaces}}</p>
     </div>
     <div class="bg-info text-light p-3 px-5 h4 rounded">
       <p>已训练期数</p>
-      <p class="m-0">123期</p>
+      <p class="m-0">{{countTrainings}}</p>
     </div>
     <div class="bg-danger text-light p-3 px-5 h4 rounded">
-      <p>累积训练人数</p>
-      <p class="m-0">123人</p>
+      <p>累积训练人数 {{countShouldCome}}</p>
+      <p class="m-0" id="countCheckins" data-shouldCom="{{countShouldCome}}">{{countCheckins}}</p>
     </div>
   </div>
 
   <div class="chart-container my-5">
     <h3>区域人数分布</h3>
+    {% for k,v in areaPeople %}
+    <i class="areaPeople d-none" data-area="{{k}}" data-people="{{v}}"></i>
+    {% endfor %}
     <canvas id="chart1"></canvas>
   </div>
 
   <div class="circle d-flex justify-content-between">
     <div class="chart-container ">
       <h3>年龄分布</h3>
+      {% for k,v in ageGroup %}
+      <i class="ageGroup" data-ageGroup="{{k}}" data-people="{{v}}"></i>
+      {% endfor %}
       <canvas id="chart2"></canvas>
     </div>
 
-    <div class="chart-container ">
+    <div class="chart-container">
       <h3>退役军人占比</h3>
-      <canvas id="chart3"></canvas>
+      <canvas id="chart3" data-soldiers="{{countSoldiers}}"></canvas>
     </div>
-    <div class="chart-container ">
+    <div class="chart-container">
       <h3>党员占比</h3>
-      <canvas id="chart4"></canvas>
+      <canvas id="chart4" data-partyMembers="{{countPartyMembers}}"></canvas>
     </div>
-    <div class="chart-container ">
+    <div class="chart-container">
       <h3>整体出勤率</h3>
-      <canvas id="chart5"></canvas>
+      <canvas id="chart5" data-checkins="{{countCheckins}}"></canvas>
     </div>
   </div>
 

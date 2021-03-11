@@ -12,20 +12,89 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use App\Entity\Trainee;
-use App\Entity\Trainer;
 use App\Entity\Training;
 use App\Entity\Checkin;
-use App\Entity\Status;
 
 class DashboardController extends AbstractDashboardController
 {
+    private $count = 55;
+
     /**
      * @Route("/admin", name="admin")
      */
     public function index(): Response
     {
         //return parent::index();
-        return $this->render('dashboard.html.twig');
+        $trainees = $this->getDoctrine()->getRepository(Trainee::class)->findAll();
+        $soldiers = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['pstatus' => '2']);
+        $partyMembers = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['politics' => '1']);
+        $faces = $this->getDoctrine()->getRepository(Trainee::class)->findAll();
+        $trainings = $this->getDoctrine()->getRepository(Training::class)->findAll();
+        $checkins = $this->getDoctrine()->getRepository(Checkin::class)->findAll();
+        $countTrainees = count($trainees);
+        $countSoldiers = count($soldiers);
+        $countPartyMembers = count($partyMembers);
+        $countCheckins = count($checkins);
+
+        //dump(Trainee::$areas);
+        //swap key and vaule of array Trainee::$areas
+        $areas = array_flip(Trainee::$areas);
+        //dump($areas);
+
+        $countShouldCome = 0;
+        $areaPeople = [];
+        $agePeople = [];
+        $ageGroup = [
+            "18岁以下" => 0,
+            "18-23" => 0,
+            "24-29" => 0,
+            "30-36" => 0,
+            "37-45" => 0,
+            "46岁以上" => 0
+            ];
+        foreach($trainees as $v){
+            $countShouldCome += count($v->getTraining());
+
+            if(!isset($areaPeople[$areas[$v->getArea()]])){
+                $areaPeople[$areas[$v->getArea()]] = 0;
+            }
+            $areaPeople[$areas[$v->getArea()]] += 1;
+
+            if($v->getAge() < 18){
+                $ageGroup["18岁以下"] += 1;
+            }
+            else if($v->getAge() < 24){
+                $ageGroup["18-23"] += 1;
+            }
+            else if($v->getAge() < 30){
+                $ageGroup["24-29"] += 1;
+            }
+            else if($v->getAge() < 37){
+                $ageGroup["30-36"] += 1;
+            }
+            else if($v->getAge() < 46){
+                $ageGroup["37-45"] += 1;
+            }
+            else{
+                $ageGroup["46岁以上"] += 1;
+            }
+        }
+        dump($areaPeople);
+        dump($ageGroup);
+
+        $data = [
+            "countTrainees" => $countTrainees,
+            "countFaces" => count($faces),
+            "countTrainings" => count($trainings),
+            "countCheckins" => count($checkins),
+            "countSoldiers" => $countSoldiers,
+            "countPartyMembers" => $countPartyMembers,
+            "countCheckins" => $countCheckins,
+            "countShouldCome" => $countShouldCome,
+            "areaPeople" => $areaPeople,
+            "ageGroup" => $ageGroup
+        ];
+        return $this->render('dashboard.html.twig', $data);
     }
 
     public function configureDashboard(): Dashboard
@@ -47,7 +116,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('训练列表', 'fa fa-tags', Training::class);
 
         //yield MenuItem::subMenu('训练管理', 'fa fa-tags')->setSubItems([
-        //    //MenuItem::linkToCrud('训练状态', '', Status::class),
         //    MenuItem::linkToCrud('添加训练', '', Training::class)->setAction('new'),
         //    MenuItem::linkToCrud('训练列表', '', Training::class),
         //]);
