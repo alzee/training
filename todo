@@ -1,7 +1,6 @@
 major:
   - get list of relations
   - batch action
-  - pic upload
 
 minor:
   - filter operand
