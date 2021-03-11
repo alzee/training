@@ -3,7 +3,10 @@ let ctx2 = document.getElementById('chart2');
 let ctx3 = document.getElementById('chart3');
 let ctx4 = document.getElementById('chart4');
 let ctx5 = document.getElementById('chart5');
+let countTrainees = document.getElementById('countTrainees').dataset.count;
 let d1 = document.querySelectorAll('.areaPeople');
+let d2 = document.querySelectorAll('.ageGroup');
+let d3 = ctx3.dataset.soldiers;
 let data1 = {
   labels: [],
   datasets: [{
@@ -12,13 +15,6 @@ let data1 = {
     data: []
   }]
 };
-for (let i = 0; i < d1.length; i++){
-  data1.labels.push((d1[i].dataset.area));
-  data1.datasets[0].data.push((d1[i].dataset.people));
-  console.log(d1[i].dataset.area);
-}
-
-let d2 = document.querySelectorAll('.ageGroup');
 let data2 = {
   labels: [],
   datasets: [{
@@ -26,12 +22,26 @@ let data2 = {
     data: []
   }]
 };
+let data3 = {
+  labels: ['退役军人', '其他'],
+  datasets: [{
+    backgroundColor: ['#0dcaf0'],
+    data: [d3, countTrainees - d3]
+  }]
+};
+
+for (let i = 0; i < d1.length; i++){
+  data1.labels.push((d1[i].dataset.area));
+  data1.datasets[0].data.push((d1[i].dataset.people));
+  console.log(d1[i].dataset.area);
+}
 for (let i = 0; i < d2.length; i++){
   console.log(d2[i]);
   data2.labels.push((d2[i].dataset.age));
   data2.datasets[0].data.push((d2[i].dataset.people));
   console.log(d2[i].dataset.age);
 }
+
 
 let options = {
     responsive:true,
@@ -66,14 +76,7 @@ let chart2 = new Chart(ctx2, {
 
 let chart3 = new Chart(ctx3, {
     type: 'doughnut',
-    //data: data,
-    data: {
-        labels: [],
-        datasets: [{
-            backgroundColor: ['#0dcaf0'],
-            data: [20,80]
-        }]
-    },
+    data: data3,
     options: {
       legend: {
         display: false,
