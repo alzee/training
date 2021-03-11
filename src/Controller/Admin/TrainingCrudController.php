@@ -17,8 +17,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 
 class TrainingCrudController extends AbstractCrudController
 {
-    //private $statuses = ['计划中' => 0,'进行中' => 1, '已暂停' => 2, '已取消' => 3, '已结束' => 4];
-
     public static function getEntityFqcn(): string
     {
         return Training::class;
@@ -37,7 +35,8 @@ class TrainingCrudController extends AbstractCrudController
             AssociationField::new('checkins', 'come')->hideOnForm(),
             DateField::new('startAt'),
             DateField::new('endAt'),
-            AssociationField::new('status'), //->autocomplete(), //->onlyOnIndex(),
+            //AssociationField::new('status'), //->autocomplete(), //->onlyOnIndex(),
+            TextField::new('status0')->hideOnForm(),
             //ChoiceField::new('status')->setChoices($this->statuses),
             //DateTimeField::new('date')->onlyOnIndex(),
         ];

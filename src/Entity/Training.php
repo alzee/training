@@ -241,4 +241,21 @@ class Training
 
         return $this;
     }
+
+    public function getStatus0(): ?string
+    {
+        $s = null;
+        $d = new \Datetime();
+
+        if ($d < $this->startAt){
+            $s = '计划中';
+        }
+        else if ($d < $this->endAt) {
+            $s = '进行中';
+        }
+        else 
+            $s = '已结束';
+
+        return $s;
+    }
 }
