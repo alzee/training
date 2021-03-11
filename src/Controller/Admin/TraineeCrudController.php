@@ -66,7 +66,7 @@ class TraineeCrudController extends AbstractCrudController
         return $filters
             ->add('area')
             ->add('age')
-            ->add(ChoiceFilter::new('pstatus')->setChoices($this->pstatus))
+            ->add(ChoiceFilter::new('pstatus')->setChoices($this->pstatus)) //->setFormTypeOption('comparison_type', 'ArrayFilter'))
             ->add(ChoiceFilter::new('politics')->setChoices($this->politics))
             ->add(ChoiceFilter::new('skills')->setChoices($this->skills))
             //->add(ChoiceFilter::new('skills')->setChoices($this->skills)->canSelectMultiple(true))
