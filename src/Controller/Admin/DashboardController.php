@@ -31,7 +31,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('仓库管理系统')
+            ->setTitle('训练签到管理系统')
             ->setTranslationDomain('admin')
         ;
     }
@@ -44,15 +44,16 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('档案管理', 'fa fa-tags', Trainee::class);
         yield MenuItem::linkToCrud('教练管理', 'fa fa-tags', Trainer::class);
 
-        yield MenuItem::subMenu('训练管理', 'fa fa-tags')->setSubItems([
-            //MenuItem::linkToRoute('仓库统计', '', 'warehouse_stat'),
-            MenuItem::linkToCrud('当前训练', '', Trainee::class),
-            MenuItem::linkToCrud('训练状态', '', Status::class),
-            MenuItem::linkToCrud('添加训练', '', Training::class)->setAction('new'),
-            MenuItem::linkToCrud('训练列表', '', Training::class),
-        ]);
+        yield MenuItem::linkToCrud('添加训练', 'fa fa-tags', Training::class)->setAction('new');
+        yield MenuItem::linkToCrud('训练列表', 'fa fa-tags', Training::class);
 
-        yield MenuItem::linkToCrud('签到管理', 'fa fa-tags', Checkin::class);
+        //yield MenuItem::subMenu('训练管理', 'fa fa-tags')->setSubItems([
+        //    //MenuItem::linkToCrud('训练状态', '', Status::class),
+        //    MenuItem::linkToCrud('添加训练', '', Training::class)->setAction('new'),
+        //    MenuItem::linkToCrud('训练列表', '', Training::class),
+        //]);
+
+        yield MenuItem::linkToCrud('签到记录', 'fa fa-tags', Checkin::class);
 
         //yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
     }
