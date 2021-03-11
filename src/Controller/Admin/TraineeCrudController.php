@@ -7,6 +7,13 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class TraineeCrudController extends AbstractCrudController
 {
@@ -15,16 +22,23 @@ class TraineeCrudController extends AbstractCrudController
         return Trainee::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            IdField::new('id')->onlyOnIndex(),
+            TextField::new('name'),
+            IntegerField::new('age'),
+            ChoiceField::new('sex')->setChoices(['男' => 0,'女' => 1]),
+            ChoiceField::new('pstatus')->setChoices(['厨师' => 0,'司机' => 1, '老师' => 2]),
+            ChoiceField::new('politics')->setChoices(['群众' => 0,'党员' => 1, '军人' => 2]),
+            TextField::new('area'),
+            TextField::new('phone'),
+            TextField::new('address'),
+            TextField::new('idnum'),
+            ChoiceField::new('skill')->setChoices(['急救护理' => 0,'特殊装备操作' => 1, '机动车驾驶' => 2]),
         ];
     }
-    */
+
 
     public function configureActions(Actions $actions): Actions
     {
