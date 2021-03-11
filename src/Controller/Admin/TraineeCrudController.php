@@ -19,6 +19,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 
 class TraineeCrudController extends AbstractCrudController
 {
@@ -31,6 +34,8 @@ class TraineeCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnIndex(),
+            ImageField::new('image', false)->setUploadDir('public/images')->setBasePath('/images')->addCssClass('avatar')->hideOnIndex(),
+            //AvatarField::new('image'),
             TextField::new('name'),
             IntegerField::new('age'),
             ChoiceField::new('sex')->setChoices(Trainee::$sexes)->renderExpanded(true),
