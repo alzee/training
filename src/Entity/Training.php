@@ -42,7 +42,7 @@ class Training
 
     /**
      * @ORM\ManyToOne(targetEntity=Status::class)
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $status;
 
@@ -55,6 +55,16 @@ class Training
      * @ORM\OneToMany(targetEntity=Checkin::class, mappedBy="training")
      */
     private $checkins;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $startAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $endAt;
 
     public function getId(): ?int
     {
@@ -187,6 +197,30 @@ class Training
                 $checkin->setTraining(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStartAt(): ?\DateTimeInterface
+    {
+        return $this->startAt;
+    }
+
+    public function setStartAt(\DateTimeInterface $startAt): self
+    {
+        $this->startAt = $startAt;
+
+        return $this;
+    }
+
+    public function getEndAt(): ?\DateTimeInterface
+    {
+        return $this->endAt;
+    }
+
+    public function setEndAt(\DateTimeInterface $endAt): self
+    {
+        $this->endAt = $endAt;
 
         return $this;
     }

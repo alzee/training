@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 
 class TrainingCrudController extends AbstractCrudController
 {
@@ -30,6 +31,8 @@ class TrainingCrudController extends AbstractCrudController
             AssociationField::new('trainer'),
             AssociationField::new('trainees', 'shouldCome'),
             AssociationField::new('checkins', 'come')->onlyOnIndex(),
+            DateField::new('startAt'),
+            DateField::new('endAt'),
             AssociationField::new('status'), //->onlyOnIndex(),
             //ChoiceField::new('status')->setChoices($this->statuses),
             //DateTimeField::new('date')->onlyOnIndex(),
