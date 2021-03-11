@@ -23,9 +23,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 class TraineeCrudController extends AbstractCrudController
 {
     private $skills = ['急救护理' => 0,'特殊装备操作' => 1, '机动车驾驶' => 2];
-    private $pstatus = ['厨师' => 0,'司机' => 1, '老师' => 2];
-    private $politics = ['群众' => 0,'党员' => 1, '军人' => 2];
+    private $pstatus = ['民兵' => 0,'退伍军人' => 1, '军人' => 2];
+    private $politics = ['群众' => 0,'党员' => 1, '团员' => 2];
     private $sex = ['男' => 0,'女' => 1];
+    //private $areas = ['宝丰镇' => 0,'城关镇' => 1, '楼塔乡'];
 
     public static function getEntityFqcn(): string
     {

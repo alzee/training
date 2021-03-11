@@ -21,6 +21,8 @@ Address: 联系地址
 Skills: 技能
 ID: 编号
 shouldCome: 应到
+chooseTrainees: 选择学员
 come: 实到
 Start At: 开始于
 End At: 结束于
+action.detail: 查看
