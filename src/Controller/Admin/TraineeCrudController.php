@@ -38,7 +38,7 @@ class TraineeCrudController extends AbstractCrudController
             IdField::new('id')->onlyOnIndex(),
             TextField::new('name'),
             IntegerField::new('age'),
-            ChoiceField::new('sex')->setChoices($this->sex),
+            ChoiceField::new('sex')->setChoices($this->sex)->renderExpanded(true),
             ChoiceField::new('pstatus')->setChoices($this->pstatus),
             ChoiceField::new('politics')->setChoices($this->politics),
             TextField::new('area'),
