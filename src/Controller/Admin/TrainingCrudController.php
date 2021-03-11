@@ -37,7 +37,7 @@ class TrainingCrudController extends AbstractCrudController
             AssociationField::new('checkins', 'come')->hideOnForm(),
             DateField::new('startAt'),
             DateField::new('endAt'),
-            AssociationField::new('status'), //->onlyOnIndex(),
+            AssociationField::new('status'), //->autocomplete(), //->onlyOnIndex(),
             //ChoiceField::new('status')->setChoices($this->statuses),
             //DateTimeField::new('date')->onlyOnIndex(),
         ];
