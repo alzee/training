@@ -15,6 +15,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -44,6 +46,9 @@ class TraineeCrudController extends AbstractCrudController
             TextField::new('address'),
             TextField::new('idnum'),
             ChoiceField::new('skill')->setChoices($this->skills),
+            ChoiceField::new('skills')->setChoices($this->skills)->allowMultipleChoices(true),
+            //ArrayField::new('skill'),
+            //CollectionField::new('skill'),
         ];
     }
 
@@ -63,7 +68,7 @@ class TraineeCrudController extends AbstractCrudController
             ->add('age')
             ->add(ChoiceFilter::new('pstatus')->setChoices($this->pstatus))
             ->add(ChoiceFilter::new('politics')->setChoices($this->politics))
-            ->add(ChoiceFilter::new('skill')->setChoices($this->skills))
+            ->add(ChoiceFilter::new('skills')->setChoices($this->skills)->canSelectMultiple(true))
         ;
     }
 }

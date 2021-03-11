@@ -63,9 +63,9 @@ class Trainee
     private $address;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="simple_array", nullable=true)
      */
-    private $skill;
+    private $skills = [];
 
     public function getId(): ?int
     {
@@ -180,20 +180,20 @@ class Trainee
         return $this;
     }
 
-    public function getSkill(): ?string
-    {
-        return $this->skill;
-    }
-
-    public function setSkill(?string $skill): self
-    {
-        $this->skill = $skill;
-
-        return $this;
-    }
-
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    public function getSkills(): ?array
+    {
+        return $this->skills;
+    }
+
+    public function setSkills(?array $skills): self
+    {
+        $this->skills = $skills;
+
+        return $this;
     }
 }
