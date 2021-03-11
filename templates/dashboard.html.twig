@@ -21,8 +21,8 @@
       <p class="m-0">{{countTrainings}}</p>
     </div>
     <div class="bg-danger text-light p-3 px-5 h4 rounded">
-      <p>累积训练人数 {{countShouldCome}}</p>
-      <p class="m-0" id="countCheckins" data-shouldCom="{{countShouldCome}}">{{countCheckins}}</p>
+      <p>累积训练人数</p>
+      <p class="m-0" id="countCheckins">{{countCheckins}}</p>
     </div>
   </div>
 
@@ -38,7 +38,7 @@
     <div class="chart-container ">
       <h3>年龄分布</h3>
       {% for k,v in ageGroup %}
-      <i class="ageGroup" data-ageGroup="{{k}}" data-people="{{v}}"></i>
+      <i class="ageGroup d-none" data-age="{{k}}" data-people="{{v}}"></i>
       {% endfor %}
       <canvas id="chart2"></canvas>
     </div>
@@ -53,7 +53,7 @@
     </div>
     <div class="chart-container">
       <h3>整体出勤率</h3>
-      <canvas id="chart5" data-checkins="{{countCheckins}}"></canvas>
+      <canvas id="chart5" data-shouldCome="{{countShouldCome}}" data-checkins="{{countCheckins}}"></canvas>
     </div>
   </div>
 
