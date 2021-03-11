@@ -1,11 +1,11 @@
 major:
-  - filter operand
-  - batch action
   - get list of relations
+  - batch action
   - charts
   - pic upload
 
 minor:
+  - filter operand
   - assosiation default value (training status)
   - assosiation form require
 
