@@ -9,3 +9,4 @@ action.create: 提交
 action.create_and_add_another: 提交并继续新增
 action.save: 保存
 action.detail: 查看
+label.null: 空
