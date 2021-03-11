@@ -10,9 +10,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 
 class TrainingCrudController extends AbstractCrudController
 {
+    //private $statuses = ['计划中' => 0,'进行中' => 1, '已暂停' => 2, '已取消' => 3, '已结束' => 4];
+
     public static function getEntityFqcn(): string
     {
         return Training::class;
@@ -22,11 +25,13 @@ class TrainingCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnIndex(),
-            AssociationField::new('trainer'),
-            AssociationField::new('status'), //->onlyOnIndex(),
             TextField::new('title'),
             TextareaField::new('description'),
-            DateTimeField::new('date')->onlyOnIndex(),
+            AssociationField::new('trainer'),
+            AssociationField::new('trainees', 'shouldCome'),
+            AssociationField::new('status'), //->onlyOnIndex(),
+            //ChoiceField::new('status')->setChoices($this->statuses),
+            //DateTimeField::new('date')->onlyOnIndex(),
         ];
     }
 

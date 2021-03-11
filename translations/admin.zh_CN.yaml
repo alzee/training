@@ -3,7 +3,7 @@ Name: 名称
 Date: 日期
 Quantity: 数量
 Trainee: 档案
-Trainer: 教练
+Trainer: 教官
 Training: 训练
 Checkin: 签到
 Description: 描述
@@ -20,3 +20,4 @@ Idnum: 身份证号
 Address: 联系地址
 Skills: 技能
 ID: 编号
+shouldCome: 应到

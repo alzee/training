@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TrainingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,6 +45,11 @@ class Training
      * @ORM\JoinColumn(nullable=true)
      */
     private $status;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Trainee::class, mappedBy="training")
+     */
+    private $trainees;
 
     public function getId(): ?int
     {
@@ -113,10 +120,38 @@ class Training
     {
         $this->date = new \DateTimeImmutable();
         $this->date = $this->date->setTimezone(new \DateTimeZone('Asia/Shanghai'));
+        $this->trainees = new ArrayCollection();
     }
 
     public function __toString(): string
     {
         return $this->title;
+    }
+
+    /**
+     * @return Collection|Trainee[]
+     */
+    public function getTrainees(): Collection
+    {
+        return $this->trainees;
+    }
+
+    public function addTrainee(Trainee $trainee): self
+    {
+        if (!$this->trainees->contains($trainee)) {
+            $this->trainees[] = $trainee;
+            $trainee->addTraining($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrainee(Trainee $trainee): self
+    {
+        if ($this->trainees->removeElement($trainee)) {
+            $trainee->removeTraining($this);
+        }
+
+        return $this;
     }
 }

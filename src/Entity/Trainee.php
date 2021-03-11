@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TraineeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -66,6 +68,16 @@ class Trainee
      * @ORM\Column(type="simple_array", nullable=true)
      */
     private $skills = [];
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Training::class, inversedBy="trainees")
+     */
+    private $training;
+
+    public function __construct()
+    {
+        $this->training = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -193,6 +205,30 @@ class Trainee
     public function setSkills(?array $skills): self
     {
         $this->skills = $skills;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Training[]
+     */
+    public function getTraining(): Collection
+    {
+        return $this->training;
+    }
+
+    public function addTraining(Training $training): self
+    {
+        if (!$this->training->contains($training)) {
+            $this->training[] = $training;
+        }
+
+        return $this;
+    }
+
+    public function removeTraining(Training $training): self
+    {
+        $this->training->removeElement($training);
 
         return $this;
     }
