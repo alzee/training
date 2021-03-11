@@ -42,7 +42,6 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         
         yield MenuItem::linkToCrud('档案管理', 'fa fa-tags', Trainee::class);
-        yield MenuItem::linkToCrud('教练管理', 'fa fa-tags', Trainer::class);
 
         yield MenuItem::linkToCrud('添加训练', 'fa fa-tags', Training::class)->setAction('new');
         yield MenuItem::linkToCrud('训练列表', 'fa fa-tags', Training::class);

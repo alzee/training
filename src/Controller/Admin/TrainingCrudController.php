@@ -31,7 +31,7 @@ class TrainingCrudController extends AbstractCrudController
             TextField::new('title'),
             TextareaField::new('description')->setMaxLength(6)->onlyOnIndex(),
             TextareaField::new('description')->hideOnIndex(),
-            AssociationField::new('trainer'),
+            TextField::new('instructor'),
             AssociationField::new('trainees', 'shouldCome')->hideOnForm(),
             //AssociationField::new('trainees', 'chooseTrainees')->onlyOnForms(),
             AssociationField::new('checkins', 'come')->hideOnForm(),

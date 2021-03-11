@@ -36,7 +36,7 @@ class Training
 
     /**
      * @ORM\ManyToOne(targetEntity=Trainer::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $trainer;
 
@@ -65,6 +65,11 @@ class Training
      * @ORM\Column(type="datetime")
      */
     private $endAt;
+
+    /**
+     * @ORM\Column(type="string", length=15)
+     */
+    private $instructor;
 
     public function getId(): ?int
     {
@@ -221,6 +226,18 @@ class Training
     public function setEndAt(\DateTimeInterface $endAt): self
     {
         $this->endAt = $endAt;
+
+        return $this;
+    }
+
+    public function getInstructor(): ?string
+    {
+        return $this->instructor;
+    }
+
+    public function setInstructor(string $instructor): self
+    {
+        $this->instructor = $instructor;
 
         return $this;
     }
