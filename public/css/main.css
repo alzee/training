@@ -14,3 +14,7 @@ td.field-image.avatar a img{
   overflow: hidden;
   display: inline-block;
 }
+.form-widget-compound .form-group:first-child{
+    display: none;
+}
+
