@@ -15,7 +15,7 @@ use App\Entity\Training;
 class ApiController extends AbstractController
 {
     /**
-     * @Route("/tg", name="api_tg")
+     * @Route("/tg", methods={"POST"}, name="api_tg")
      */
     public function index(Request $request): Response
     {
@@ -35,5 +35,25 @@ class ApiController extends AbstractController
         }
 
         return $this->json($params['te']);
+    }
+
+    /**
+     * @Route("/v1/record/face", methods={"POST"}, name="api_face")
+     */
+    public function face(Request $request): Response
+    {
+        $params = json_decode($request->getContent(), true);
+
+        return $this->json($params);
+    }
+
+    /**
+     * @Route("/v1/stranger", methods={"POST"}, name="api_stranger")
+     */
+    public function stranger(Request $request): Response
+    {
+        $params = json_decode($request->getContent(), true);
+
+        return $this->json($params);
     }
 }
