@@ -75,7 +75,7 @@ class TraineeCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->overrideTemplate('crud/detail', 'bundles/EasyAdminBundle/crud/detail.html.twig')
+            ->overrideTemplate('crud/index', 'index0.html.twig')
         ;
     }
 }
