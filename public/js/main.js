@@ -16,7 +16,6 @@ function trainingList() {
                   sel.appendChild(opt.cloneNode(true));
                 }
               console.log(sel);
-                
             }
         }
     };
@@ -50,5 +49,4 @@ if(btn){
     btn.addEventListener('click', batchApply);
 }
 
-
-trainingList();
+//trainingList();

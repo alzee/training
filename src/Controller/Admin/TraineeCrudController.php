@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Trainee;
+use App\Entity\Training;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -22,6 +23,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 
 class TraineeCrudController extends AbstractCrudController
 {
@@ -77,5 +79,15 @@ class TraineeCrudController extends AbstractCrudController
         return $crud
             ->overrideTemplate('crud/index', 'index0.html.twig')
         ;
+    }
+
+    public function configureResponseParameters(KeyValueStore $responseParameters): KeyValueStore
+    {
+        if (Crud::PAGE_INDEX === $responseParameters->get('pageName')) {
+            $trainings = $this->getDoctrine()->getRepository(Training::class)->findAll();
+            $responseParameters->set('trainings', $trainings);
+        }
+
+        return $responseParameters;
     }
 }
