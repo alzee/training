@@ -9,10 +9,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Trainee;
 use App\Entity\Training;
 
-class TController extends AbstractController
+class TgController extends AbstractController
 {
     /**
-     * @Route("/t", name="t")
+     * @Route("/api/tg", name="api_tg")
      */
     public function index(Request $request): Response
     {

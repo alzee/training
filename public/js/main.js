@@ -57,7 +57,7 @@ function batchApply() {
             }
         }
     };
-    xhr.open('POST', url + '/t');
+    xhr.open('POST', url + '/api/tg');
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.responseType='json';
