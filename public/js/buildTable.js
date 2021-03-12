@@ -21,6 +21,11 @@ function getList(api, property, queryStr, arr){
                       let res = xhr.response[property];
                       for(let i = 0; i < res.length; i++){
                           for(let j = 0; j < row.children.length; j++){
+                              if(arr[j] == 'endAt' || arr[j] == 'startAt'){
+                                  let d = new Date(res[i][arr[j]]);
+                                  console.log(d);
+                                  res[i][arr[j]] = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
+                              }
                               row.children[j].innerText = res[i][arr[j]];
                           }
                           row.lastElementChild.innerText = '否';
@@ -51,7 +56,7 @@ function getList(api, property, queryStr, arr){
 let tg = document.querySelector('#training-head');
 let te = document.querySelector('#trainee-head');
 if(tg){
-    getList('/api/trainees/', 'training', 'trainee', ['id', 'title', 'description', 'instructor', 'instructor', 'checkin']);
+    getList('/api/trainees/', 'training', 'trainee', ['id', 'title', 'description', 'instructor', 'endAt', 'checkin']);
 }
 if(te){
     getList('/api/trainings/', 'trainees', 'training', ['name', 'id', 'age', 'area', 'pstatus', 'checkin']);

@@ -76,6 +76,7 @@ class Training
     private $startAt;
 
     /**
+     * @Groups({"trainee:read"})
      * @ORM\Column(type="datetime")
      */
     private $endAt;
