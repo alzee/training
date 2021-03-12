@@ -79,8 +79,6 @@ class DashboardController extends AbstractDashboardController
                 $ageGroup["46岁以上"] += 1;
             }
         }
-        dump($areaPeople);
-        dump($ageGroup);
 
         $data = [
             "countTrainees" => $countTrainees,
