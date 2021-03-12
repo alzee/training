@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Training;
+use App\Entity\Trainee;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -14,6 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 
 class TrainingCrudController extends AbstractCrudController
 {
@@ -57,4 +59,14 @@ class TrainingCrudController extends AbstractCrudController
         ;
     }
 
+    public function configureResponseParameters(KeyValueStore $responseParameters): KeyValueStore
+    {
+        if (Crud::PAGE_DETAIL === $responseParameters->get('pageName')) {
+            //$training = $this->getDoctrine()->getRepository(Training::class)->find(1);
+            //$trainees = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['training' => $training]);
+            //$responseParameters->set('trainees', 1);
+        }
+
+        return $responseParameters;
+    }
 }

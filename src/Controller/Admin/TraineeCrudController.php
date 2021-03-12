@@ -88,6 +88,11 @@ class TraineeCrudController extends AbstractCrudController
             $responseParameters->set('trainings', $trainings);
         }
 
+        //if (Crud::PAGE_DETAIL === $responseParameters->get('pageName')) {
+        //    $trainings = $this->getDoctrine()->getRepository(Training::class)->findBy(['trainees' => $trainees]);
+        //    $responseParameters->set('trainings', $trainings);
+        //}
+
         return $responseParameters;
     }
 }
