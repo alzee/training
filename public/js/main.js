@@ -25,4 +25,30 @@ function trainingList() {
     xhr.send();
 }
 
+
+function batchApply() {
+    let tab = document.querySelector('table.table');
+    let tbody = tab.querySelector('tbody');
+    let checkbox = tbody.querySelectorAll('.form-batch-checkbox');
+
+    let sel = document.querySelector('#traininglist');
+    let opt = sel.firstElementChild;
+
+    let trainingId = sel.value;
+    let trainees = [];
+    for(let i = 0; i < checkbox.length; i++){
+        if(checkbox[i].checked){
+            trainees.push(checkbox[i].value);
+        }
+    }
+    console.log(trainingId);
+    console.log(trainees);
+}
+
+let btn = document.querySelector('#batchBtn');
+if(btn){
+    btn.addEventListener('click', batchApply);
+}
+
+
 trainingList();
