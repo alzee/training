@@ -52,7 +52,6 @@ function getList(api, property, queryStr, arr){
     xhr1.send();
 }
 
-
 let tg = document.querySelector('#training-head');
 let te = document.querySelector('#trainee-head');
 if(tg){
@@ -61,3 +60,4 @@ if(tg){
 if(te){
     getList('/api/trainings/', 'trainees', 'training', ['name', 'id', 'age', 'area', 'pstatus', 'checkin']);
 }
+

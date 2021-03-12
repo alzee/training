@@ -204,6 +204,13 @@
             </table>
         </div>
 
+<div class="mt-3 ml-3">
+<select id="traininglist" class="custom-select w-25">
+<option>
+</option>
+</select>
+<button class="btn btn-lg btn-primary">添加</button>
+</div>
         {% if entities|length > 0 %}
             <div class="content-panel-footer without-padding without-border">
                 {% block paginator %}
@@ -346,6 +353,7 @@
             {% endif %}
         });
     </script>
+    <script src="/js/main.js"></script>
 
     {% if app.request.get('query') is not empty %}
         <script type="text/javascript">
