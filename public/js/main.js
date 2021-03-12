@@ -42,6 +42,26 @@ function batchApply() {
     }
     console.log(trainingId);
     console.log(trainees);
+
+    //let data = `{ "tgid": ${trainingId}, "te": ${trainees} }`;
+    let data = { tgid: trainingId, te: trainees };
+    data = JSON.stringify(data);
+    let xhr = new XMLHttpRequest();
+    let url = window.location.origin;
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                res = xhr.response;
+                console.log(res);
+                location.reload(true);
+            }
+        }
+    };
+    xhr.open('POST', url + '/t');
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.responseType='json';
+    xhr.send(data);
 }
 
 let btn = document.querySelector('#batchBtn');
