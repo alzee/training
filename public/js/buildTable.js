@@ -1,70 +1,58 @@
-function getTraininglist(){
+function getList(api, property, queryStr, arr){
   let id = new URLSearchParams(window.location.search).get('entityId');
   let xhr = new XMLHttpRequest();
-  let url = 'http://training/api/trainings/';
+  let url = window.location.origin;
   let tbody = document.querySelector('#table tbody');
   let row = document.querySelector('#table tbody tr');
   tbody.removeChild(row);
-  xhr.onreadystatechange = function () {
-    if(xhr.readyState === XMLHttpRequest.DONE){
-      if(xhr.status === 200){
-        let trainees = xhr.response.trainees;
-        for(let i = 0; i < trainees.length; i++){
-          row.firstElementChild.innerText = trainees[i].name;
-          row.firstElementChild.nextElementSibling.innerText = trainees[i].id;
-          row.firstElementChild.nextElementSibling.nextElementSibling.innerText = trainees[i].age;
-          row.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.innerText = trainees[i].area;
-          row.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerText = trainees[i].pstatus;
-          row.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerText = trainees[i].checkins;
-          tbody.appendChild(row.cloneNode(true));
 
-          console.log(trainees[i]);
-        }
+  // checkins
+  let xhr1 = new XMLHttpRequest();
+  xhr1.onreadystatechange = function () {
+    if(xhr1.readyState === XMLHttpRequest.DONE){
+      if(xhr1.status === 200){
+          let res1 = xhr1.response;
+
+          xhr.onreadystatechange = function () {
+              if(xhr.readyState === XMLHttpRequest.DONE){
+                  if(xhr.status === 200){
+                      let checkins = res1['hydra:member'];
+                      console.log(res1['hydra:member']);
+                      let res = xhr.response[property];
+                      for(let i = 0; i < res.length; i++){
+                          for(let j = 0; j < row.children.length; j++){
+                              row.children[j].innerText = res[i][arr[j]];
+                          }
+                          row.lastElementChild.innerText = '否';
+                          for(let j = 0; j < checkins.length; j++){
+                              console.log(checkins[j][queryStr]);
+                              if(id == checkins[j][queryStr].split("/")[3]){
+                                  row.lastElementChild.innerText = '是';
+                                  break;
+                              }
+                          }
+                          tbody.appendChild(row.cloneNode(true));
+                      }
+                  }
+              }
+          };
+          xhr.open('GET', url + api + id);
+          xhr.responseType='json';
+          xhr.send();
       }
     }
   };
-  xhr.open('GET', url + id);
-  xhr.responseType='json';
-  //xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.send();
+    xhr1.open('GET', url + '/api/checkins?' + queryStr + '.id=' + id);
+    xhr1.responseType='json';
+    xhr1.send();
 }
 
-function getTraineelist(){
-  let id = new URLSearchParams(window.location.search).get('entityId');
-  let xhr = new XMLHttpRequest();
-  let url = 'http://training/api/trainees/';
-  let tbody = document.querySelector('#table tbody');
-  let row = document.querySelector('#table tbody tr');
-  tbody.removeChild(row);
-  xhr.onreadystatechange = function () {
-    if(xhr.readyState === XMLHttpRequest.DONE){
-      if(xhr.status === 200){
-        let training = xhr.response.training;
-        for(let i = 0; i < training.length; i++){
-          row.firstElementChild.innerText = training[i].id;
-          row.firstElementChild.nextElementSibling.innerText = training[i].title;
-          row.firstElementChild.nextElementSibling.nextElementSibling.innerText = training[i].description;
-          row.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.innerText = training[i].instructor;
-          row.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerText = training[i].instructor;
-          row.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerText = training[i].checkins;
-          tbody.appendChild(row.cloneNode(true));
-
-          console.log(training[i].checkins);
-        }
-      }
-    }
-  };
-  xhr.open('GET', url + id);
-  xhr.responseType='json';
-  //xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.send();
-}
 
 let tg = document.querySelector('#training-head');
 let te = document.querySelector('#trainee-head');
 if(tg){
-  getTraininglist();
+    getList('/api/trainees/', 'training', 'trainee', ['id', 'title', 'description', 'instructor', 'instructor', 'checkin']);
 }
 if(te){
-  getTraineelist();
+    getList('/api/trainings/', 'trainees', 'training', ['name', 'id', 'age', 'area', 'pstatus', 'checkin']);
 }

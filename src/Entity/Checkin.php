@@ -4,8 +4,17 @@ namespace App\Entity;
 
 use App\Repository\CheckinRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
+ * @ApiResource(
+ * normalizationContext={"groups"={"checkin:read"}},
+ * denormalizationContext={"groups"={"checkin:write"}}
+ * )
+ * @ApiFilter(SearchFilter::class, properties={"trainee.id": "exact", "training.id": "exact"})
  * @ORM\Entity(repositoryClass=CheckinRepository::class)
  */
 class Checkin
@@ -18,6 +27,7 @@ class Checkin
     private $id;
 
     /**
+     * @Groups({"checkin:read", "checkin:write"})
      * @ORM\ManyToOne(targetEntity=Trainee::class)
      * @ORM\JoinColumn(nullable=false)
      */
@@ -29,6 +39,7 @@ class Checkin
     private $date;
 
     /**
+     * @Groups({"checkin:read", "checkin:write"})
      * @ORM\ManyToOne(targetEntity=Training::class, inversedBy="checkins")
      * @ORM\JoinColumn(nullable=false)
      */

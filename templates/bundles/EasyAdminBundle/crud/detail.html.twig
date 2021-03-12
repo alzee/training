@@ -61,7 +61,7 @@
 <table class="table table-hover table-striped table-secondary" id="table">
     {% if entity.fqcn == "App\\Entity\\Training" %}
     <p class="h5">参加人员</p>
-  <thead id="training-head">
+  <thead id="trainee-head">
     <tr>
       <th scope="col">姓名</th>
       <th scope="col">编号</th>
@@ -75,7 +75,7 @@
 
     {% if entity.fqcn == "App\\Entity\\Trainee" %}
     <p class="h5">训练记录</p>
-  <thead id="trainee-head">
+  <thead id="training-head">
     <tr>
       <th scope="col">期数</th>
       <th scope="col">标题</th>
@@ -90,7 +90,11 @@
     <tr>
       <th scope="row"></th>
       <td></td>
-      <td class="ellipsis" colspan="2"></td>
+      <td
+    {% if entity.fqcn == "App\\Entity\\Trainee" %}
+    class="ellipsis"
+      {% endif %}
+      ></td>
       <td></td>
       <td></td>
       <td></td>

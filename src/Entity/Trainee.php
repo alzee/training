@@ -10,15 +10,12 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
  * normalizationContext={"groups"={"trainee:read"}},
  * denormalizationContext={"groups"={"trainee:write"}}
  * )
- * @ApiFilter(SearchFilter::class, properties={"id": "exact"})
  * @ORM\Entity(repositoryClass=TraineeRepository::class)
  */
 class Trainee

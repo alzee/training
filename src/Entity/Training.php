@@ -65,7 +65,6 @@ class Training
     private $trainees;
 
     /**
-     * @Groups({"trainee:read"})
      * @Groups({"training:read", "training:write"})
      * @ORM\OneToMany(targetEntity=Checkin::class, mappedBy="training")
      */
