@@ -64,7 +64,8 @@ class TrainingCrudController extends AbstractCrudController
         if (Crud::PAGE_DETAIL === $responseParameters->get('pageName')) {
             //$training = $this->getDoctrine()->getRepository(Training::class)->find(1);
             //$trainees = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['training' => $training]);
-            //$responseParameters->set('trainees', 1);
+            $trainees = $this->getDoctrine()->getRepository(Trainee::class)->findAll();
+            $responseParameters->set('trainees', $trainees);
         }
 
         return $responseParameters;
