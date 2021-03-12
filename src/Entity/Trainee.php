@@ -25,6 +25,7 @@ class Trainee
 {
     /**
      * @ORM\Id
+     * @Groups({"training:read"})
      * @ORM\GeneratedValue
      * @Groups({"trainee:read"})
      * @ORM\Column(type="integer")
@@ -96,7 +97,7 @@ class Trainee
     private $skills = [];
 
     /**
-     * @Groups({"trainee:read", "trainee:write"})
+     * @Groups({"trainee:read"})
      * @ORM\ManyToMany(targetEntity=Training::class, inversedBy="trainees")
      */
     private $training;

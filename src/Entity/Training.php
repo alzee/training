@@ -59,7 +59,6 @@ class Training
     private $status;
 
     /**
-     * @Groups({"trainee:read"})
      * @Groups({"training:read", "training:write"})
      * @ORM\ManyToMany(targetEntity=Trainee::class, mappedBy="training")
      */

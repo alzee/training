@@ -7,3 +7,10 @@ td.field-image.avatar a img{
   width: 140px;
   border-radius: .5em;
 }
+.ellipsis{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 150px;
+  overflow: hidden;
+  display: inline-block;
+}

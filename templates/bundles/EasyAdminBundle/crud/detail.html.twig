@@ -57,6 +57,46 @@
         {% endfor %}
 
         {{ _self.close_content_panel() }}
+
+<table class="table table-hover table-striped table-secondary" id="table">
+    {% if entity.fqcn == "App\\Entity\\Training" %}
+    <p class="h5">参加人员</p>
+  <thead id="training-head">
+    <tr>
+      <th scope="col">姓名</th>
+      <th scope="col">编号</th>
+      <th scope="col">年龄</th>
+      <th scope="col">片区</th>
+      <th scope="col">身份</th>
+      <th scope="col">是否签到</th>
+    </tr>
+  </thead>
+      {% endif %}
+
+    {% if entity.fqcn == "App\\Entity\\Trainee" %}
+    <p class="h5">训练记录</p>
+  <thead id="trainee-head">
+    <tr>
+      <th scope="col">期数</th>
+      <th scope="col">标题</th>
+      <th scope="col">内容</th>
+      <th scope="col">教官</th>
+      <th scope="col">状态</th>
+      <th scope="col">是否签到</th>
+    </tr>
+  </thead>
+      {% endif %}
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td class="ellipsis" colspan="2"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
     {% endblock %}
 
     {% block delete_form %}
@@ -81,6 +121,7 @@
             });
         });
     </script>
+    <script src="/js/buildTable.js"></script>
 {% endblock %}
 
 {% macro open_empty_content_panel(field) %}
