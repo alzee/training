@@ -1,13 +1,9 @@
 major:
   - batch import trainees
   - websocket
-  - get list of relations
   - 10 trainings only
   - date format
   - status color blue green black
-  - https://stackoverflow.com/questions/17116888/how-to-sort-findall-doctrines-method
-  - https://www.codenong.com/17116888/
-  - https://symfonyquestions.com/2020/03/11/how-can-i-execute-findby-on-many-to-many-relation-in-symfony/
 
 minor:
   - batch action

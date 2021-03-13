@@ -19,6 +19,15 @@ class TraineeRepository extends ServiceEntityRepository
         parent::__construct($registry, Trainee::class);
     }
 
+    public function findOneByIdJoinedToTraining(int $id): ?Trainee
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'select te, tg from App\Entity\Trainee te inner join te.training tg where te.id = :id'
+        )->setParameter('id', $id);
+        return $query->getOneOrNullResult();
+    }
+
     // /**
     //  * @return Trainee[] Returns an array of Trainee objects
     //  */

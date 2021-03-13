@@ -62,10 +62,15 @@ class TrainingCrudController extends AbstractCrudController
     public function configureResponseParameters(KeyValueStore $responseParameters): KeyValueStore
     {
         if (Crud::PAGE_DETAIL === $responseParameters->get('pageName')) {
-            //$training = $this->getDoctrine()->getRepository(Training::class)->find(1);
-            //$trainees = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['training' => $training]);
-            $trainees = $this->getDoctrine()->getRepository(Trainee::class)->findAll();
-            $responseParameters->set('trainees', $trainees);
+            $trainingId = $responseParameters->get('entity')->getInstance()->getId();
+            $training = $this->getDoctrine()->getRepository(Training::class)->findOneByIdJoinedToTrainee($trainingId);
+            if(is_null($training)){
+                $trainees = null;
+            }
+            else{
+                $trainees = $training->getTrainees();
+            }
+                $responseParameters->set('trainees', $trainees);
         }
 
         return $responseParameters;

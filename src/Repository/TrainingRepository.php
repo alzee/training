@@ -19,6 +19,15 @@ class TrainingRepository extends ServiceEntityRepository
         parent::__construct($registry, Training::class);
     }
 
+    public function findOneByIdJoinedToTrainee(int $id): ?Training
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'select tg, te from App\Entity\Training tg inner join tg.trainees te where tg.id = :id'
+        )->setParameter('id', $id);
+        return $query->getOneOrNullResult();
+    }
+
     // /**
     //  * @return Training[] Returns an array of Training objects
     //  */
