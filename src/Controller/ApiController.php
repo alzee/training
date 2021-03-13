@@ -113,8 +113,7 @@ class ApiController extends AbstractController
             "Content" => $content,
             "Msg" => $msg
         ];
-        //return $this->json($params['logs'][0]['recog_time']);
-        //return $this->json($res);
-        return $this->json($params);
+        //return $this->json($params);
+        return $this->json($res);
     }
 }
