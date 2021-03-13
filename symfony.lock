@@ -578,5 +578,8 @@
     },
     "willdurand/negotiation": {
         "version": "3.0.0"
+    },
+    "workerman/workerman": {
+        "version": "v4.0.19"
     }
 }
