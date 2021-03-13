@@ -84,7 +84,8 @@ class TraineeCrudController extends AbstractCrudController
     public function configureResponseParameters(KeyValueStore $responseParameters): KeyValueStore
     {
         if (Crud::PAGE_INDEX === $responseParameters->get('pageName')) {
-            $trainings = $this->getDoctrine()->getRepository(Training::class)->findAll();
+            // Use findBy([], [...]) hack instead, because findAll() don't have sort
+            $trainings = $this->getDoctrine()->getRepository(Training::class)->findBy([],['id'=>'DESC']);
             $responseParameters->set('trainings', $trainings);
         }
 
