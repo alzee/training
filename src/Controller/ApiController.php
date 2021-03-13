@@ -42,9 +42,18 @@ class ApiController extends AbstractController
      */
     public function face(Request $request): Response
     {
+        $code = 0;
+        $content = '';
+        $msg = '更新成功';
         $params = json_decode($request->getContent(), true);
 
-        return $this->json($params);
+        $res = [
+            "Result" => $code,
+            "Content" => $content,
+            "Msg" => $msg
+        ];
+        //return $this->json($params['logs'][0]['photo']);
+        return $this->json($res);
     }
 
     /**
@@ -52,8 +61,17 @@ class ApiController extends AbstractController
      */
     public function stranger(Request $request): Response
     {
+        $code = 0;
+        $content = '';
+        $msg = '更新成功';
         $params = json_decode($request->getContent(), true);
 
-        return $this->json($params);
+        $res = [
+            "Result" => $code,
+            "Content" => $content,
+            "Msg" => $msg
+        ];
+        //return $this->json($params['logs'][0]['recog_time']);
+        return $this->json($res);
     }
 }
