@@ -44,8 +44,8 @@ class ApiController extends AbstractController
     public function face(Request $request): Response
     {
         $code = 0;
-        $content = '';
-        $msg = '更新成功';
+        $content = '0';
+        $msg = 'Face record added';
         $params = json_decode($request->getContent(), true);
 
         $res = [
@@ -63,8 +63,8 @@ class ApiController extends AbstractController
     public function stranger(Request $request): Response
     {
         $code = 0;
-        $content = '';
-        $msg = '更新成功';
+        $content = '1';
+        $msg = 'Stranger record added';
 
         $data = '{
         "sn": "RL001-00186",
