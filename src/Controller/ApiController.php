@@ -46,14 +46,38 @@ class ApiController extends AbstractController
         $code = 0;
         $content = '0';
         $msg = 'Face record added';
+
         $params = json_decode($request->getContent(), true);
+        // 新版机器 logs 只有一条数据，不用再检查了
+        //$count = sizeof($params['logs']);
+        //$params['count0'] = $count;
+        $d = $params['logs'][0];
+
+        $em = $this->getDoctrine()->getManager();
+        $c = new C2();
+        $c->setCount($params['Count']);
+        $c->setUid($d['user_id']);
+        //$c->setTime($d['recog_time']);
+        $c->setType($d['recog_type']);
+        //$c->setPhoto($d['photo']);
+        $c->setTemperature($d['body_temperature']);
+        $c->setConfidence($d['confidence']);
+        $c->setReflectivity($d['reflectivity']);
+        $c->setRoomTemperature($d['room_temperature']);
+            $c->setCount(0);
+        if(isset($d['gender'])){
+            $c->setGender($d['gender']);
+        }
+
+        $em->persist($c);
+        $em->flush();
 
         $res = [
             "Result" => $code,
             "Content" => $content,
             "Msg" => $msg
         ];
-        //return $this->json($params['logs'][0]['photo']);
+        //return $this->json($params);
         return $this->json($res);
     }
 
@@ -95,7 +119,7 @@ class ApiController extends AbstractController
         $c->setUid($d['user_id']);
         //$c->setTime($d['recog_time']);
         $c->setType($d['recog_type']);
-        $c->setPhoto($d['photo']);
+        //$c->setPhoto($d['photo']);
         $c->setTemperature($d['body_temperature']);
         $c->setConfidence($d['confidence']);
         $c->setReflectivity($d['reflectivity']);
