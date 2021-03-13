@@ -1,4 +1,6 @@
 major:
+  - batch import trainees
+  - websocket
   - get list of relations
 
 minor:
