@@ -84,6 +84,9 @@ class ApiController extends AbstractController
     }';
         //$params = json_decode($data, true);
         $params = json_decode($request->getContent(), true);
+        // 新版机器 logs 只有一条数据，不用再检查了
+        //$count = sizeof($params['logs']);
+        //$params['count0'] = $count;
         $d = $params['logs'][0];
 
         $em = $this->getDoctrine()->getManager();
