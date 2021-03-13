@@ -1,9 +1,7 @@
 major:
   - batch import trainees
   - websocket
-  - 10 trainings only
   - date format
-  - status color blue green black
 
 minor:
   - batch action

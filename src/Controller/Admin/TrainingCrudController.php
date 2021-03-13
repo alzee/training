@@ -48,6 +48,7 @@ class TrainingCrudController extends AbstractCrudController
     {
         return $crud
             ->setPageTitle('index', '%entity_label_plural% 列表')
+            ->overrideTemplate('crud/index', 'index1.html.twig')
         ;
     }
 
