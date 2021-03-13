@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Trainee;
 use App\Entity\Training;
+use App\Entity\C2;
 
 /**
  * @Route("/api")
@@ -57,14 +58,52 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/v1/stranger", methods={"POST"}, name="api_stranger")
+     * @Route("/v1/stranger", methods={"POST", "GET"}, name="api_stranger")
      */
     public function stranger(Request $request): Response
     {
         $code = 0;
         $content = '';
         $msg = '更新成功';
+
+        $data = '{
+        "sn": "RL001-00186",
+            "Count":1,
+            "logs":[
+        {
+            "user_id":"334", 
+                "recog_time":"2018-12-26 12:00:00",
+                "recog_type":"face",
+                "photo":"base64",
+                "body_temperature":"36.5",
+                "confidence":"95.5",
+                "reflectivity":86,
+                "room_temperature":25.5
+    }
+            ]
+    }';
+        //$params = json_decode($data, true);
         $params = json_decode($request->getContent(), true);
+        $d = $params['logs'][0];
+
+        $em = $this->getDoctrine()->getManager();
+        $c = new C2();
+        $c->setCount($params['Count']);
+        $c->setUid($d['user_id']);
+        //$c->setTime($d['recog_time']);
+        $c->setType($d['recog_type']);
+        $c->setPhoto($d['photo']);
+        $c->setTemperature($d['body_temperature']);
+        $c->setConfidence($d['confidence']);
+        $c->setReflectivity($d['reflectivity']);
+        $c->setRoomTemperature($d['room_temperature']);
+            $c->setCount(0);
+        if(isset($d['gender'])){
+            $c->setGender($d['gender']);
+        }
+
+        $em->persist($c);
+        $em->flush();
 
         $res = [
             "Result" => $code,
@@ -72,6 +111,7 @@ class ApiController extends AbstractController
             "Msg" => $msg
         ];
         //return $this->json($params['logs'][0]['recog_time']);
-        return $this->json($res);
+        //return $this->json($res);
+        return $this->json($params);
     }
 }
