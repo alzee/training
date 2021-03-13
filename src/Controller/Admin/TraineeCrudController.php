@@ -85,7 +85,7 @@ class TraineeCrudController extends AbstractCrudController
     {
         if (Crud::PAGE_INDEX === $responseParameters->get('pageName')) {
             // Use findBy([], [...]) hack instead, because findAll() don't have sort
-            $trainings = $this->getDoctrine()->getRepository(Training::class)->findBy([],['id'=>'DESC']);
+            $trainings = $this->getDoctrine()->getRepository(Training::class)->findBy([],['id'=>'DESC'], 10);
             $responseParameters->set('trainings', $trainings);
         }
 
