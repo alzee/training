@@ -16,10 +16,17 @@ class PushController extends AbstractController
     {
         //Gateway::bindUid($client_id, 设备id);
         //Gateway::sendToUid(设备id, 数据);
-        Gateway::$registerAddress = '127.0.0.1:1238';
-        $data = '{"cmd":"to_device","to":"7f0000010b5600000001","type":"send","content":"hello all", "user":"admin", "pass":"******"}';
-        Gateway::sendToAll($data);
+        Gateway::$registerAddress = '127.0.0.1:8001';
+        $data = [
+            "cmd" => "to_device",
+            "to" => "7f0000010b5600000001",
+            "type" => "send",
+            "content" => "hello all",
+            "user" => "admin",
+            "pass" => "123"
+        ];
+        Gateway::sendToAll(json_encode($data));
 
-        return $this->json(0);
+        return $this->json(["code" => 0 ]);
     }
 }

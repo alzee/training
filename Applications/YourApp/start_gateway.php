@@ -33,7 +33,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 // gateway 进程，这里使用Text协议，可以用telnet测试
 //$gateway = new Gateway("Websocket://0.0.0.0:12390", $context);
-$gateway = new Gateway("Websocket://0.0.0.0:12391");
+$gateway = new Gateway("Websocket://0.0.0.0:8000");
 // 设置transport开启ssl
 //$gateway->transport = 'ssl';
 // gateway名称，status方便查看
@@ -46,7 +46,7 @@ $gateway->lanIp = '127.0.0.1';
 // 则一般会使用4000 4001 4002 4003 4个端口作为内部通讯端口 
 $gateway->startPort = 2900;
 // 服务注册地址
-$gateway->registerAddress = '127.0.0.1:1238';
+$gateway->registerAddress = '127.0.0.1:8001';
 
 // 心跳间隔
 $gateway->pingInterval = 120;
