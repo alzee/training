@@ -24,7 +24,7 @@ let data2 = {
   }]
 };
 let data3 = {
-  labels: ['退役军人', '其他'],
+  labels: ['退伍军人', '其他'],
   datasets: [{
     backgroundColor: ['#0dcaf0'],
     data: [d3, countTrainees - d3]
@@ -65,9 +65,9 @@ let options = {
         display: false,
     },
     scales: {
-        yAxes: [{
+        xAxes: [{
             ticks: {
-                beginAtZero: true
+                beginAtZero: true,
             }
         }]
     }

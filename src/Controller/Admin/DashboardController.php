@@ -27,7 +27,7 @@ class DashboardController extends AbstractDashboardController
     {
         //return parent::index();
         $trainees = $this->getDoctrine()->getRepository(Trainee::class)->findAll();
-        $soldiers = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['pstatus' => '2']);
+        $soldiers = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['pstatus' => '1']);
         $partyMembers = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['politics' => '1']);
         $faces = $this->getDoctrine()->getRepository(Trainee::class)->findAll();
         $trainings = $this->getDoctrine()->getRepository(Training::class)->findAll();
@@ -37,10 +37,7 @@ class DashboardController extends AbstractDashboardController
         $countPartyMembers = count($partyMembers);
         $countCheckins = count($checkins);
 
-        //dump(Trainee::$areas);
-        //swap key and vaule of array Trainee::$areas
-        $areas = array_flip(Trainee::$areas);
-        //dump($areas);
+        $areas = Trainee::$areas;
 
         $countShouldCome = 0;
         $areaPeople = [];
