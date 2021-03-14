@@ -582,6 +582,9 @@
     "workerman/gateway-worker": {
         "version": "v3.0.19"
     },
+    "workerman/gatewayclient": {
+        "version": "v3.0.13"
+    },
     "workerman/workerman": {
         "version": "v4.0.19"
     }

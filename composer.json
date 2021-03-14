@@ -46,6 +46,7 @@
         "twig/twig": "^2.12|^3.0",
         "vich/uploader-bundle": "^1.16",
         "workerman/gateway-worker": "^3.0",
+        "workerman/gatewayclient": "^3.0",
         "workerman/workerman": "^4.0"
     },
     "require-dev": {
