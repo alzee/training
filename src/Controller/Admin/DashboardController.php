@@ -56,10 +56,12 @@ class DashboardController extends AbstractDashboardController
         foreach($trainees as $v){
             $countShouldCome += count($v->getTraining());
 
-            if(!isset($areaPeople[$areas[$v->getArea()]])){
-                $areaPeople[$areas[$v->getArea()]] = 0;
+            if(isset($areas[$v->getArea()])){
+                if(!isset($areaPeople[$areas[$v->getArea()]])){
+                    $areaPeople[$areas[$v->getArea()]] = 0;
+                }
+                $areaPeople[$areas[$v->getArea()]] += 1;
             }
-            $areaPeople[$areas[$v->getArea()]] += 1;
 
             if($v->getAge() < 18){
                 $ageGroup["18岁以下"] += 1;
