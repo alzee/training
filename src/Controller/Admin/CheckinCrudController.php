@@ -21,7 +21,7 @@ class CheckinCrudController extends AbstractCrudController
             IdField::new('id')->onlyOnIndex(),
             AssociationField::new('trainee', 'checkin.trainee'),
             AssociationField::new('training'),
-            DateTimeField::new('date')->setFormat('long')->onlyOnIndex(),
+            DateTimeField::new('date')->setFormat('short')->onlyOnIndex(),
         ];
     }
 }
