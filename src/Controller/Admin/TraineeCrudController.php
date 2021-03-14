@@ -46,7 +46,7 @@ class TraineeCrudController extends AbstractCrudController
             ChoiceField::new('sex')->setChoices(Trainee::$sexes)->renderExpanded(true),
             ChoiceField::new('pstatus')->setChoices(Trainee::$pstatuses),
             ChoiceField::new('politics')->setChoices(Trainee::$allPolitics),
-            ChoiceField::new('area')->setChoices(Trainee::$areas),
+            ChoiceField::new('area')->setChoices(array_flip(Trainee::$areas)),
             TextField::new('phone'),
             TextField::new('address'),
             TextField::new('idnum'),

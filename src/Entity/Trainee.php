@@ -71,7 +71,7 @@ class Trainee
     static $pstatuses = ['民兵' => 0,'退伍军人' => 1, '军人' => 2];
     static $allPolitics = ['群众' => 0,'党员' => 1, '团员' => 2];
     static $sexes = ['男' => 0,'女' => 1];
-    static $areas = ['宝丰镇' => 0,'城关镇' => 1, '楼塔乡' => 2];
+    static $areas = ['城关镇', '溢水镇', '官渡镇', '麻家渡镇', '宝丰镇', '擂鼓镇', '秦古镇', '得胜镇', '上庸镇', '田家坝镇', '楼台乡', '文峰乡', '潘口乡', '竹坪乡', '深河乡', '大庙乡', '双台乡', '柳林乡', '农林四场'];
 
     /**
      * @ORM\Column(type="string", length=15, nullable=true)

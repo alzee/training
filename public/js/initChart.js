@@ -11,7 +11,7 @@ let d4 = ctx4.dataset.partymembers;
 let data1 = {
   labels: [],
   datasets: [{
-    label: '领用排行榜',
+    label: '',
     backgroundColor: '#0dcaf0',
     data: []
   }]

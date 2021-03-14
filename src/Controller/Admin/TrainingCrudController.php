@@ -70,6 +70,9 @@ class TrainingCrudController extends AbstractCrudController
             }
             else{
                 $trainees = $training->getTrainees();
+                foreach($trainees as $v){
+                    $v->setArea(Trainee::$areas[$v->getArea()]);
+                }
             }
                 $responseParameters->set('trainees', $trainees);
         }
