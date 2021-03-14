@@ -64,9 +64,17 @@ function batchApply() {
     xhr.send(data);
 }
 
-let btn = document.querySelector('#batchBtn');
-if(btn){
-    btn.addEventListener('click', batchApply);
+function push() {
+    console.log('fuck');
+}
+
+let btn1 = document.querySelector('#batchBtn');
+if(btn1){
+    btn1.addEventListener('click', batchApply);
+}
+let btn2 = document.querySelector('button.action-saveAndReturn');
+if(btn2){
+    btn2.addEventListener('click', push);
 }
 
 //trainingList();

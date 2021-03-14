@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Trainee;
 use App\Entity\Training;
 use App\Entity\C2;
+use GatewayClient\Gateway;
 
 /**
  * @Route("/api")
@@ -139,5 +140,57 @@ class ApiController extends AbstractController
         ];
         //return $this->json($params);
         return $this->json($res);
+    }
+
+    /**
+     * @Route("/push", methods={"POST"}, name="api_push")
+     */
+    public function push(Request $request): Response
+    {
+        $params = json_decode($request->getContent(), true);
+        $d = $params;
+
+        $data = [
+            "cmd" => "addUser",
+            //"cmd" => "onlineAuthorization",
+            //"cmd" => "editUser",
+            //"cmd" => "delUser",
+            //"cmd" => "delMultiUserRet",
+            //"cmd" => "delAllUser",
+            //"user_id" => 800005,
+            "user_id" => $d->id,
+            //"name" => '杨一14',
+            "name" => $d->name,
+            //"id_card" => '420302199012121111',
+            "id_card" => $d->idnum(),
+            "id_valid" => '',
+            // 验证模式为人脸或卡时照片才不是非必填，但此模式下 Ic 必填
+            "Ic" => '111',
+        ];
+        $resp = [
+            "cmd" => "to_device",
+            "from" => '',
+            "to" => "RLM-00112166",
+            "data" => $data,
+        ];
+
+        Gateway::$registerAddress = '127.0.0.1:8001';
+        Gateway::sendToAll(json_encode($resp));
+
+        //return $this->json(["code" => 0 ]);
+        return $this->json($resp);
+    }
+
+    /**
+     * @Route("/lastid", methods={"GET"}, name="api_lastid")
+     */
+    public function lastId(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $newId = $this->getDoctrine()->getRepository(Trainee::class)->findBy([], ["id" => "DESC"], 1)[0]->getId() + 1;
+        $resp = [
+            "newid" => $newId,
+        ];
+        return $this->json($resp);
     }
 }
