@@ -182,9 +182,9 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/lastid", methods={"GET"}, name="api_lastid")
+     * @Route("/newid", methods={"GET"}, name="api_newid")
      */
-    public function lastId(Request $request): Response
+    public function newId(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
         $newId = $this->getDoctrine()->getRepository(Trainee::class)->findBy([], ["id" => "DESC"], 1)[0]->getId() + 1;

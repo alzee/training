@@ -65,7 +65,7 @@ function batchApply() {
 }
 
 function push() {
-    console.log('fuck');
+    console.log('test');
 }
 
 let btn1 = document.querySelector('#batchBtn');
