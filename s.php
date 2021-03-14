@@ -21,8 +21,10 @@ $worker->onWorkerStart = function($worker)
         $uid = $data['uid'];
         // 通过workerman，向uid的页面推送数据
         $ret = sendMessageByUid($uid, $data['percent']);
+        var_dump($ret);
         // 返回推送结果
-        $connection->send($ret ? 'ok' : 'fail0');
+        //$connection->send($ret ? 'ok' : 'fail0');
+        $connection->send(json_encode($data));
     };
     $inner_text_worker->listen();
 };
