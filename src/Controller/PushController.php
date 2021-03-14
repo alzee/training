@@ -18,14 +18,24 @@ class PushController extends AbstractController
         //Gateway::sendToUid(设备id, 数据);
         Gateway::$registerAddress = '127.0.0.1:8001';
         $data = [
-            "cmd" => "to_device",
-            "to" => "7f0000010b5600000001",
-            "type" => "send",
-            "content" => "hello all",
-            "user" => "admin",
-            "pass" => "123"
+            "cmd" => "onlineAuthorization",
+            //"cmd" => "addUser",
+            //"user_id" => 800003,
+            //"name" => '杨兴伟',
+            //"id_card" => '420302199012121111',
+            //"id_valid" => '',
+            //"Ic" => '111',
+            //"face_template" => 'https://uploadfile.bizhizu.cn/up/d2/7f/15/d27f157652629be2d04f41e7c697c25a.jpg',
+            //"vlface_template" => ''
         ];
-        Gateway::sendToAll(json_encode($data));
+        $resp = [
+            "cmd" => "to_device",
+            "from" => '',
+            "to" => "RLM-00112166",
+            "data" => $data,
+        ];
+
+        Gateway::sendToAll(json_encode($resp));
 
         return $this->json(["code" => 0 ]);
     }
