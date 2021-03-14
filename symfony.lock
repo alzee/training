@@ -579,6 +579,9 @@
     "willdurand/negotiation": {
         "version": "3.0.0"
     },
+    "workerman/gateway-worker": {
+        "version": "v3.0.19"
+    },
     "workerman/workerman": {
         "version": "v4.0.19"
     }
