@@ -15,7 +15,7 @@ class PushController extends AbstractController
     /**
      * @Route("/push", name="push")
      */
-    public function push(array $d, string $cmd): Response
+    public function push(array $d)
     {
         //Gateway::bindUid($client_id, 设备id);
         //Gateway::sendToUid(设备id, 数据);
@@ -28,7 +28,5 @@ class PushController extends AbstractController
         ];
 
         Gateway::sendToAll(json_encode($resp));
-
-        return $this->json(["code" => 0 ]);
     }
 }

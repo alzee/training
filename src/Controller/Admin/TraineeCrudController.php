@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Trainee;
 use App\Entity\Training;
+use GatewayClient\Gateway;
+use App\Controller\PushController;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -24,6 +26,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
+use Doctrine\ORM\EntityManagerInterface;
 
 class TraineeCrudController extends AbstractCrudController
 {
@@ -103,5 +106,59 @@ class TraineeCrudController extends AbstractCrudController
         }
 
         return $responseParameters;
+    }
+
+    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        $newId = $this->getDoctrine()->getRepository(Trainee::class)->findBy([], ["id" => "DESC"], 1)[0]->getId() + 1;
+        $data = [
+            "cmd" => "addUser",
+            //"cmd" => "onlineAuthorization",
+            //"cmd" => "editUser",
+            //"cmd" => "delUser",
+            //"cmd" => "delMultiUserRet",
+            //"cmd" => "delAllUser",
+            "user_id" => $newId,
+            "name" => $entityInstance->getName(),
+            "id_card" => $entityInstance->getIdnum(),
+            "id_valid" => '',
+            // 验证模式为人脸或卡时照片才不是非必填，但此模式下 Ic 必填
+            "Ic" => '1001',
+        ];
+        $p = new PushController();
+        $p->push($data);
+
+        $entityManager->persist($entityInstance);
+        $entityManager->flush();
+    }
+
+    public function deleteEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        $data = [
+            "cmd" => "delUser",
+            "user_id" => $entityInstance->getId(),
+            "user_type" => '0',
+        ];
+        $p = new PushController();
+        $p->push($data);
+        $entityManager->remove($entityInstance);
+        $entityManager->flush();
+    }
+
+    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        $data = [
+            "cmd" => "editUser",
+            "user_id" => $entityInstance->getId(),
+            "name" => $entityInstance->getName(),
+            "id_card" => $entityInstance->getIdnum(),
+            "id_valid" => '',
+            "Ic" => '1001',
+            "edit_mode" => 1
+        ];
+        $p = new PushController();
+        $p->push($data);
+        $entityManager->persist($entityInstance);
+        $entityManager->flush();
     }
 }
