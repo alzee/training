@@ -1,7 +1,7 @@
 major:
   - batch import trainees
-  - websocket
-  - date format
+  - capture photo
+  - checkin
 
 minor:
   - batch action
