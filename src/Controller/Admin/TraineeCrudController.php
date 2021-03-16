@@ -39,7 +39,7 @@ class TraineeCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnIndex(),
-            ImageField::new('image')->setUploadDir('public/images')->setBasePath('/images')->addCssClass('avatar'),
+            ImageField::new('image')->setUploadDir('public/images')->setBasePath('/images')->addCssClass('avatar')->hideOnForm(),
             //AvatarField::new('image'),
             TextField::new('name'),
             IntegerField::new('age'),
