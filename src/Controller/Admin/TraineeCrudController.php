@@ -82,6 +82,7 @@ class TraineeCrudController extends AbstractCrudController
         return $crud
             ->overrideTemplate('crud/index', 'index0.html.twig')
             ->overrideTemplate('crud/new', 'new0.html.twig')
+            ->overrideTemplate('crud/detail', 'detail0.html.twig')
         ;
     }
 
