@@ -39,7 +39,7 @@ class TraineeCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnIndex(),
-            ImageField::new('image')->setUploadDir('public/images')->setBasePath('/images')->addCssClass('avatar')->hideOnForm(),
+            ImageField::new('image')->setUploadDir('public/images')->setBasePath('/images/avatar')->addCssClass('avatar')->hideOnForm(),
             //AvatarField::new('image'),
             TextField::new('name'),
             IntegerField::new('age'),
@@ -116,6 +116,9 @@ class TraineeCrudController extends AbstractCrudController
 
         //$newId = $this->getDoctrine()->getRepository(Trainee::class)->findBy([], ["id" => "DESC"], 1)[0]->getId() + 1;
         $id = $entityInstance->getId();
+        $entityInstance->setImage($id . '.jpg');
+        $entityManager->persist($entityInstance);
+        $entityManager->flush();
         $data = [
             "cmd" => "addUser",
             //"cmd" => "onlineAuthorization",
