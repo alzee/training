@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Trainee;
 use App\Entity\Training;
 use GatewayClient\Gateway;
@@ -57,9 +58,21 @@ class TraineeCrudController extends AbstractCrudController
         ];
     }
 
+    public function capture(Request $request)
+    {
+        Request::create('api/capture/1');
+        // return $this->redirect($request->getUri());
+    }
+
     public function configureActions(Actions $actions): Actions
     {
+        $capture = Action::new('capture', 'capture', 'fa fa-user')
+            ->linkToCrudAction('capture')
+            ->displayAsButton()
+            ->addCssClass('btn btn-success')
+        ;
         return $actions
+            ->add(Crud::PAGE_DETAIL, $capture)
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
             //->add(Crud::PAGE_EDIT, Action::SAVE_AND_ADD_ANOTHER)
         ;
