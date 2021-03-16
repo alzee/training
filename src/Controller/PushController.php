@@ -15,14 +15,14 @@ class PushController extends AbstractController
     /**
      * @Route("/push", name="push")
      */
-    public function push(array $d)
+    public function push(array $d, int $from = 0)
     {
         //Gateway::bindUid($client_id, 设备id);
         //Gateway::sendToUid(设备id, 数据);
         Gateway::$registerAddress = '127.0.0.1:8001';
         $resp = [
             "cmd" => "to_device",
-            "from" => '',
+            "from" => $from,
             "to" => "RLM-00112166",
             "data" => $d,
         ];

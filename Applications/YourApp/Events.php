@@ -59,11 +59,10 @@ class Events
        if($message_data['data']['cmd'] == 'onlineAuthorizationRet'){
            $pic = $message_data['data']['vl_face_template'];
            $base_img = str_replace('data:image/jpg;base64,', '', urldecode($pic));
-           //  设置文件路径和命名文件名称
            $path = "./public/images/";
            $output_file = time().rand(100,999).'.jpg';
            $path = $path.$output_file;
-           //  创建将数据流文件写入我们创建的文件内容中
+           $uid = $message_data['to'];
            file_put_contents($path, base64_decode($base_img));
        }
 

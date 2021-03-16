@@ -272,15 +272,15 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/capture", name="api_capture")
+     * @Route("/capture/{uid}", name="api_capture")
      */
-    function capture()
+    function capture($uid)
     {
         $p = new PushController();
         $data = [
             "cmd" => "onlineAuthorization"
         ];
-        $p->push($data);
+        $p->push($data, $uid);
 
         $resp = ["code" => 0 ];
         return $this->json($resp);
