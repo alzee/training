@@ -10,6 +10,10 @@ use App\Entity\Trainee;
 use App\Entity\Training;
 use App\Entity\C2;
 use GatewayClient\Gateway;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Xls;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 /**
  * @Route("/api")
@@ -191,6 +195,72 @@ class ApiController extends AbstractController
         $resp = [
             "newid" => $newId,
         ];
+        return $this->json($resp);
+    }
+
+    /**
+     * @Route("/trainee/import", name="api_xlsx2db")
+     */
+    public function xlsx2db(): Response
+    {
+        $type='Xlsx';
+        $inputFileName = 'xlsx/test.xlsx';
+        $reader = IOFactory::createReader($type);
+        //$reader->setLoadSheetsOnly($sheetname);
+        $spreadsheet = $reader->load($inputFileName);
+        $range = 'A2:I1000';
+        $sheetData = $spreadsheet->getActiveSheet()->rangeToArray($range, null, true, true, true);
+        //$sheetname = $spreadsheet->getSheetNames();
+        //dump($sheetData);
+        $sexes = Trainee::$sexes;
+        $pstatuses = Trainee::$pstatuses;
+        $allPolitics = Trainee::$allPolitics;
+        $areas = array_flip(Trainee::$areas);
+
+        $em = $this->getDoctrine()->getManager();
+        foreach($sheetData as $k => $v){
+            $te = new Trainee();
+            // 如果姓名为空，我们就当作后面没有了
+            if(is_null($v['A'])) break;
+            // 如果是姓名外的某一项为空，将其设为 0 以避免报错
+            foreach($v as $kk => $vv){
+                if(is_null($vv))
+                    $v[$kk] = '0';
+            }
+            // 如果没有和选项匹配的，设为默认值 0
+            if(isset($sexes[$v['C']])) {
+                $te->setSex($sexes[$v['C']]);
+            }
+            else {
+                $te->setSex(0);
+            }
+            if(isset($pstatuses[$v['D']])) {
+                $te->setPstatus($pstatuses[$v['D']]);
+            }
+            else {
+                $te->setPstatus(0);
+            }
+            if(isset($allPolitics[$v['E']])) {
+                $te->setPolitics($allPolitics[$v['E']]);
+            }
+            else {
+                $te->setPolitics(0);
+            }
+            if(isset($areas[$v['I']])) {
+                $te->setArea($areas[$v['I']]);
+            }
+            else {
+                $te->setArea(0);
+            }
+            $te->setName($v['A']);
+            $te->setAge($v['B']);
+            $te->setPhone($v['F']);
+            $te->setIdnum($v['G']);
+            $te->setAddress($v['H']);
+            $em->persist($te);
+        }
+        $em->flush();
+        $resp = ["code" => 0];
         return $this->json($resp);
     }
 }
