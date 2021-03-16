@@ -110,7 +110,11 @@ class TraineeCrudController extends AbstractCrudController
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        $newId = $this->getDoctrine()->getRepository(Trainee::class)->findBy([], ["id" => "DESC"], 1)[0]->getId() + 1;
+        $entityManager->persist($entityInstance);
+        $entityManager->flush();
+
+        //$newId = $this->getDoctrine()->getRepository(Trainee::class)->findBy([], ["id" => "DESC"], 1)[0]->getId() + 1;
+        $id = $entityInstance->getId();
         $data = [
             "cmd" => "addUser",
             //"cmd" => "onlineAuthorization",
@@ -118,7 +122,7 @@ class TraineeCrudController extends AbstractCrudController
             //"cmd" => "delUser",
             //"cmd" => "delMultiUserRet",
             //"cmd" => "delAllUser",
-            "user_id" => $newId,
+            "user_id" => $id,
             "name" => $entityInstance->getName(),
             "id_card" => $entityInstance->getIdnum(),
             "id_valid" => '',
@@ -128,8 +132,6 @@ class TraineeCrudController extends AbstractCrudController
         $p = new PushController();
         $p->push($data);
 
-        $entityManager->persist($entityInstance);
-        $entityManager->flush();
     }
 
     public function deleteEntity(EntityManagerInterface $entityManager, $entityInstance): void

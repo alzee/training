@@ -14,6 +14,9 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Xls;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Controller\Admin\TraineeCrudController;
+use App\Controller\PushController;
 
 /**
  * @Route("/api")
@@ -218,6 +221,7 @@ class ApiController extends AbstractController
         $areas = array_flip(Trainee::$areas);
 
         $em = $this->getDoctrine()->getManager();
+        $p = new PushController();
         foreach($sheetData as $k => $v){
             $te = new Trainee();
             // 如果姓名为空，我们就当作后面没有了
@@ -257,11 +261,26 @@ class ApiController extends AbstractController
             $te->setPhone($v['F']);
             $te->setIdnum($v['G']);
             $te->setAddress($v['H']);
+            //$p = new TraineeCrudController();
+            //$p->persistEntity($em, $te);
             $em->persist($te);
+            $em->flush();
+
+            $id = $te->getId();
+            //$newId = $this->getDoctrine()->getRepository(Trainee::class)->findBy([], ["id" => "DESC"], 1)[0]->getId() + 1;
+            $data = [
+                "cmd" => "addUser",
+                "user_id" => $id,
+                "name" => $v['A'],
+                "id_card" => $v['G'],
+                "id_valid" => '',
+                // 验证模式为人脸或卡时照片才不是非必填，但此模式下 Ic 必填
+                "Ic" => '1001',
+            ];
+            $p->push($data);
         }
-        $em->flush();
         rename($inputFileName, "xlsx/old/" . date("Ymd") . ".xlsx");
-        $resp = ["code" => 0];
+        $resp = ["id" => $id];
         return $this->json($resp);
     }
 }
