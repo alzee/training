@@ -189,19 +189,6 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/newid", methods={"GET"}, name="api_newid")
-     */
-    public function newId(Request $request): Response
-    {
-        $em = $this->getDoctrine()->getManager();
-        $newId = $this->getDoctrine()->getRepository(Trainee::class)->findBy([], ["id" => "DESC"], 1)[0]->getId() + 1;
-        $resp = [
-            "newid" => $newId,
-        ];
-        return $this->json($resp);
-    }
-
-    /**
      * @Route("/trainee/import", name="api_xlsx2db")
      */
     public function xlsx2db(): Response
@@ -281,6 +268,21 @@ class ApiController extends AbstractController
         }
         rename($inputFileName, "xlsx/old/" . date("Ymd") . ".xlsx");
         $resp = ["id" => $id];
+        return $this->json($resp);
+    }
+
+    /**
+     * @Route("/capture", name="api_capture")
+     */
+    function capture()
+    {
+        $p = new PushController();
+        $data = [
+            "cmd" => "onlineAuthorization"
+        ];
+        $p->push($data);
+
+        $resp = ["code" => 0 ];
         return $this->json($resp);
     }
 }
