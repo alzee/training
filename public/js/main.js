@@ -64,17 +64,32 @@ function batchApply() {
     xhr.send(data);
 }
 
-function push() {
-    console.log('test');
+function batchImport() {
+    let xhr = new XMLHttpRequest();
+    let url = window.location.origin;
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                res = xhr.response;
+                console.log(res);
+                location.reload(true);
+            }
+        }
+    };
+    xhr.open('GET', url + '/api/trainee/import');
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.responseType='json';
+    xhr.send();
 }
 
 let btn1 = document.querySelector('#batchBtn');
 if(btn1){
     btn1.addEventListener('click', batchApply);
 }
-let btn2 = document.querySelector('button.action-saveAndReturn');
+let btn2 = document.querySelector('#import');
 if(btn2){
-    btn2.addEventListener('click', push);
+    btn2.addEventListener('click', batchImport);
 }
 
 //trainingList();
