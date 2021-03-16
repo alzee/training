@@ -204,7 +204,7 @@ class ApiController extends AbstractController
     public function xlsx2db(): Response
     {
         $type='Xlsx';
-        $inputFileName = 'xlsx/test.xlsx';
+        $inputFileName = 'xlsx/1.xlsx';
         $reader = IOFactory::createReader($type);
         //$reader->setLoadSheetsOnly($sheetname);
         $spreadsheet = $reader->load($inputFileName);
@@ -260,6 +260,7 @@ class ApiController extends AbstractController
             $em->persist($te);
         }
         $em->flush();
+        rename($inputFileName, "xlsx/old/" . date("Ymd") . ".xlsx");
         $resp = ["code" => 0];
         return $this->json($resp);
     }
