@@ -119,6 +119,10 @@ class TraineeCrudController extends AbstractCrudController
         $entityInstance->setImage($id . '.jpg');
         $entityManager->persist($entityInstance);
         $entityManager->flush();
+
+        $prefix = 'images/avatar/';
+        copy($prefix . 'avatar.jpg', $prefix . $id . '.jpg');
+
         $data = [
             "cmd" => "addUser",
             //"cmd" => "onlineAuthorization",
@@ -134,7 +138,7 @@ class TraineeCrudController extends AbstractCrudController
             "Ic" => '1001',
         ];
         $p = new PushController();
-        $p->push($data);
+        //$p->push($data);
 
     }
 
