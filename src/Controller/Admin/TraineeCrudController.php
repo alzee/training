@@ -177,7 +177,7 @@ class TraineeCrudController extends AbstractCrudController
             "id_card" => $entityInstance->getIdnum(),
             "id_valid" => '',
             "Ic" => '1001',
-            "edit_mode" => 1
+            "edit_mode" => 0
         ];
         $p = new PushController();
         $p->push($data);
