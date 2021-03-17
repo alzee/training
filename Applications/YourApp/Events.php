@@ -65,6 +65,19 @@ class Events
                $uid = $message_data['to'];
                $path = $path.$uid.'.jpg';
                file_put_contents($path, base64_decode($base_img));
+               $data = [
+                   "cmd" => "editUser",
+                   "user_id" => $uid,
+                   "edit_mode" => 1,
+                   "face_template" => $pic
+               ];
+               $resp = [
+                   "cmd" => "to_device",
+                   "from" => 0,
+                   "to" => "RLM-00112166",
+                   "data" => $data,
+               ];
+               Gateway::sendToAll(json_encode($resp));
            }
        }
 
