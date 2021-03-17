@@ -1,6 +1,4 @@
 major:
-  - batch import trainees
-  - capture photo
   - checkin
 
 minor:

@@ -98,7 +98,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('训练签到管理系统')
+            ->setTitle('民兵智能化训练信息管理系统')
             ->setTranslationDomain('admin')
         ;
     }
