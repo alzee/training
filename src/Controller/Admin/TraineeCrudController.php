@@ -151,7 +151,7 @@ class TraineeCrudController extends AbstractCrudController
             "Ic" => '1001',
         ];
         $p = new PushController();
-        //$p->push($data);
+        $p->push($data);
 
     }
 

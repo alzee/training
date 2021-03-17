@@ -83,6 +83,26 @@ function batchImport() {
     xhr.send();
 }
 
+function capture() {
+    let xhr = new XMLHttpRequest();
+    let url = window.location.origin;
+    let uid = new URLSearchParams(window.location.search).get('entityId');
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                res = xhr.response;
+                console.log(res);
+                location.reload(true);
+            }
+        }
+    };
+    xhr.open('GET', url + '/api/capture/' + uid);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.responseType='json';
+    xhr.send();
+}
+
 let btn1 = document.querySelector('#batchBtn');
 if(btn1){
     btn1.addEventListener('click', batchApply);
@@ -90,6 +110,10 @@ if(btn1){
 let btn2 = document.querySelector('#import');
 if(btn2){
     btn2.addEventListener('click', batchImport);
+}
+let btn3 = document.querySelector('.action-capture');
+if(btn3){
+    btn3.addEventListener('click', capture);
 }
 
 //trainingList();

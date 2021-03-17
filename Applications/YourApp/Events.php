@@ -56,14 +56,16 @@ class Events
        echo $msg;
        $message_data = json_decode($message, true);
 
-       if($message_data['data']['cmd'] == 'onlineAuthorizationRet'){
-           $pic = $message_data['data']['vl_face_template'];
-           $base_img = str_replace('data:image/jpg;base64,', '', urldecode($pic));
-           $path = "./public/images/avatar/";
-           //$output_file = time().rand(100,999).'.jpg';
-           $uid = $message_data['to'];
-           $path = $path.$uid.'.jpg';
-           file_put_contents($path, base64_decode($base_img));
+       if(isset($message_data['data'])){
+           if($message_data['data']['cmd'] == 'onlineAuthorizationRet'){
+               $pic = $message_data['data']['vl_face_template'];
+               $base_img = str_replace('data:image/jpg;base64,', '', urldecode($pic));
+               $path = "./public/images/avatar/";
+               //$output_file = time().rand(100,999).'.jpg';
+               $uid = $message_data['to'];
+               $path = $path.$uid.'.jpg';
+               file_put_contents($path, base64_decode($base_img));
+           }
        }
 
        if(!$message_data)
