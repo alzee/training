@@ -92,7 +92,11 @@ function capture() {
             if(xhr.status === 200){
                 res = xhr.response;
                 console.log(res);
-                location.reload(true);
+                setTimeout(
+                    function(){
+                        location.reload(true);
+                    }, 1000
+                );
             }
         }
     };
