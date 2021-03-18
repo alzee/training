@@ -24,8 +24,8 @@ class C2CrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->onlyOnIndex(),
-            IntegerField::new('uid', 'checkin.uid'),
+            //IdField::new('id')->onlyOnIndex(),
+            //IntegerField::new('uid', 'checkin.uid'),
             TextField::new('name', 'checkin.name'),
             DateTimeField::new('time', 'checkin.time'),
         ];
@@ -34,7 +34,7 @@ class C2CrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-            //->disable(Action::NEW, Action::DELETE, Action::EDIT)
+            ->disable(Action::NEW, Action::DELETE, Action::EDIT)
             ;
     }
 }
