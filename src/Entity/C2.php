@@ -67,6 +67,11 @@ class C2
      */
     private $room_temperature;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $name;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -188,6 +193,18 @@ class C2
     public function setRoomTemperature(?string $room_temperature): self
     {
         $this->room_temperature = $room_temperature;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }
