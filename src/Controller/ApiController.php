@@ -65,6 +65,8 @@ class ApiController extends AbstractController
         $c = new C2();
         $c->setCount($params['Count']);
         $c->setUid($d['user_id']);
+        $te = $this->getDoctrine()->getRepository(Trainee::class)->find($d['user_id']);;
+        $c->setName($te->getName());
         //$c->setTime($d['recog_time']);
         $c->setType($d['recog_type']);
         //$c->setPhoto($d['photo']);

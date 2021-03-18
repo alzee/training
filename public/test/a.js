@@ -1,10 +1,10 @@
 function face() {
     let data = { 
-        "sn":"xxxx",
+        "sn":"RL001-00186",
         "Count":1,
         "logs":[
             {
-                "user_id":"11",
+                "user_id":"3118",
                 "recog_time":"2019-01-01 11:11:11",
                 "recog_type":"face",
                 "photo":"base64",
