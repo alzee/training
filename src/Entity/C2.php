@@ -208,4 +208,10 @@ class C2
 
         return $this;
     }
+
+    public function __construct()
+    {
+        $this->time= new \DateTimeImmutable();
+        $this->time= $this->time->setTimezone(new \DateTimeZone('Asia/Shanghai'));
+    }
 }

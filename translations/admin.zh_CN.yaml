@@ -31,3 +31,5 @@ Status0: 状态
 Image: 照片
 capture: 采集
 C2: 签到记录
+checkin.time: 签到时间
+checkin.name: 姓名
