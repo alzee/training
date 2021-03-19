@@ -27,7 +27,7 @@ class C2CrudController extends AbstractCrudController
             //IdField::new('id')->onlyOnIndex(),
             //IntegerField::new('uid', 'checkin.uid'),
             TextField::new('name', 'checkin.name'),
-            DateTimeField::new('time', 'checkin.time'),
+            DateTimeField::new('time', 'checkin.time')->setFormat('y年MM月dd日 HH:mm:ss'),
         ];
     }
 
