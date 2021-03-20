@@ -11,6 +11,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 
 class AbsenceCrudController extends AbstractCrudController
 {
@@ -23,6 +25,8 @@ class AbsenceCrudController extends AbstractCrudController
     {
         return $crud
             ->setDefaultSort(['leaveAt' => 'DESC'])
+            ->overrideTemplate('crud/index', 'absence_index.html.twig')
+            ->setSearchFields(null)
         ;
     }
 
@@ -42,4 +46,13 @@ class AbsenceCrudController extends AbstractCrudController
             ->disable(Action::NEW, Action::DELETE);
         ;
     }
+
+    /*
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add(EntityFilter::new('name'))
+        ;
+    }
+     */
 }
