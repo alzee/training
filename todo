@@ -1,6 +1,6 @@
 major:
   - checkin
-  - upload
+  - generate url for trainee, improt guide need to jump
 
 minor:
   - batch action

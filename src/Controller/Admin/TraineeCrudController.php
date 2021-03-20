@@ -89,7 +89,7 @@ class TraineeCrudController extends AbstractCrudController
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
-            ->add('area')
+            ->add(ChoiceFilter::new('area')->setChoices(array_flip(Trainee::$areas)))
             ->add('age')
             ->add(ChoiceFilter::new('pstatus')->setChoices(Trainee::$pstatuses)) //->setFormTypeOption('comparison_type', 'ArrayFilter'))
             ->add(ChoiceFilter::new('politics')->setChoices(Trainee::$allPolitics))
