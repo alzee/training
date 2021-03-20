@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Trainee;
+use App\Entity\Absense;
 use App\Entity\Training;
 use App\Entity\C2;
 use GatewayClient\Gateway;
@@ -79,7 +80,10 @@ class ApiController extends AbstractController
             $c->setGender($d['gender']);
         }
 
+        $absence = new Absense();
         $em->persist($c);
+        $em->persist($absence);
+
         $em->flush();
 
         $res = [
