@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Absence;
+use App\Entity\Trainee;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -13,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
+use Doctrine\ORM\EntityManagerInterface;
 
 class AbsenceCrudController extends AbstractCrudController
 {
@@ -43,7 +45,7 @@ class AbsenceCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-            ->disable(Action::NEW, Action::DELETE);
+            ->disable(Action::NEW);
         ;
     }
 
@@ -55,4 +57,15 @@ class AbsenceCrudController extends AbstractCrudController
         ;
     }
      */
+
+    public function deleteEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        // 如果删除考勤，重置 checkinCount 为 1 。主要用来修正误刷
+        $te = $this->getDoctrine()->getRepository(Trainee::class)->find($entityInstance->getName());
+        $te->setCheckinCount(1);
+        $entityManager->persist($te);
+
+        $entityManager->remove($entityInstance);
+        $entityManager->flush();
+    }
 }
