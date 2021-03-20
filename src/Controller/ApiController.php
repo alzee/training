@@ -80,9 +80,9 @@ class ApiController extends AbstractController
             $c->setGender($d['gender']);
         }
 
-        $absence = new Absense();
+        //$absence = new Absense();
         $em->persist($c);
-        $em->persist($absence);
+        //$em->persist($absence);
 
         $em->flush();
 
