@@ -120,6 +120,11 @@ class Trainee
      */
     private $absences;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $checkinCount = 0;
+
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
@@ -348,6 +353,18 @@ class Trainee
                 $absence->setName(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCheckinCount(): ?int
+    {
+        return $this->checkinCount;
+    }
+
+    public function setCheckinCount(?int $checkinCount): self
+    {
+        $this->checkinCount = $checkinCount;
 
         return $this;
     }

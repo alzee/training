@@ -19,6 +19,13 @@ class AbsenceCrudController extends AbstractCrudController
         return Absence::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setDefaultSort(['leaveAt' => 'DESC'])
+        ;
+    }
+
     public function configureFields(string $pageName): iterable
     {
         return [
