@@ -2,10 +2,10 @@ Category: 类别
 Name: 姓名
 Date: 日期
 Quantity: 数量
-Trainee: 档案
+Trainee: 个人信息
 Trainer: 教官
 Instructor: 教官
-Training: 训练
+Training: 训练档案
 Checkin: 签到
 Description: 描述
 Title: 标题
@@ -33,7 +33,7 @@ capture: 采集
 C2: 签到记录
 checkin.time: 签到时间
 checkin.name: 姓名
-Absence: 请假记录
+Absence: 考勤记录
 Leave At: 请假时间
 Back At: 到岗时间
 Note: 备注

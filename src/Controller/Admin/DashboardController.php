@@ -109,10 +109,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('综合统计', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         
-        yield MenuItem::linkToCrud('档案管理', 'fa fa-tags', Trainee::class);
+        yield MenuItem::linkToCrud('个人信息', 'fa fa-tags', Trainee::class);
 
-        yield MenuItem::linkToCrud('添加训练', 'fa fa-tags', Training::class)->setAction('new');
-        yield MenuItem::linkToCrud('训练列表', 'fa fa-tags', Training::class);
+        yield MenuItem::linkToCrud('训练记录', 'fa fa-tags', Training::class)->setAction('new');
+        yield MenuItem::linkToCrud('训练档案', 'fa fa-tags', Training::class);
 
         //yield MenuItem::subMenu('训练管理', 'fa fa-tags')->setSubItems([
         //    MenuItem::linkToCrud('添加训练', '', Training::class)->setAction('new'),
@@ -120,8 +120,8 @@ class DashboardController extends AbstractDashboardController
         //]);
 
         //yield MenuItem::linkToCrud('签到记录', 'fa fa-tags', Checkin::class);
-        yield MenuItem::linkToCrud('请假记录', 'fa fa-tags', Absence::class);
-        yield MenuItem::linkToCrud('签到记录', 'fa fa-tags', C2::class);
+        yield MenuItem::linkToCrud('考勤记录', 'fa fa-tags', Absence::class);
+        // yield MenuItem::linkToCrud('签到记录', 'fa fa-tags', C2::class);
 
         //yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
     }
