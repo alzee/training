@@ -1,0 +1,40 @@
+{% extends '@!EasyAdmin/page/content.html.twig' %}
+
+    {% block head_stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/easyadmin/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    {% endblock %}
+
+    {% block page_title %}批量导入向导{% endblock %}
+
+{% block content %}
+<div class="content mt-4">
+<div class="text-center">
+<h2 class="mb-4">批量导入向导</h1>
+<p class="h4 mb-4">导入文件须为 xlsx 格式电子表格。表头如下：</p>
+</div>
+<table class="table mb-5">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">姓名</th>
+      <th scope="col">年龄</th>
+      <th scope="col">性别</th>
+      <th scope="col">身份</th>
+      <th scope="col">政治面貌</th>
+      <th scope="col">手机</th>
+      <th scope="col">身份证号</th>
+      <th scope="col">联系地址</th>
+      <th scope="col">片区</th>
+    </tr>
+  </thead>
+</table>
+			<form enctype="multipart/form-data" action="/api/trainees/import" method="POST">
+			  <div class="custom-file mb-3 col-sm-5 d-block mx-auto w-25">
+				  <input type="file" class="custom-file-input" id="customFile" name="file" required>
+				  <label class="custom-file-label" for="customFile">点击选择文件上传</label>
+			  </div>
+			  <button type="submit" class="btn btn-lg btn-block btn-success mx-auto w-25">上 传</button>
+			</form>
+
+</div>
+{% endblock %}

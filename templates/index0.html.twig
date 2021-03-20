@@ -25,7 +25,7 @@
             {{ include(action.templatePath, { action: action }, with_context = false) }}
         {% endfor %}
     {% endblock global_actions %}
-    <a class="btn btn-primary" id="import">批量导入</a>
+    <a class="btn btn-primary" id="import" href="{{path("import_guide")}}">批量导入</a>
     <a class="btn btn-primary" id="export" href="/api/trainees/export">导出表格</a>
 {% endblock page_actions %}
 

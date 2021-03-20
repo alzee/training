@@ -195,15 +195,21 @@ class ApiController extends AbstractController
      */
     public function xlsx2db(): Response
     {
+        $file=$_FILES['file']['tmp_name'];
+
+        if(!$file){
+        }
         $type='Xlsx';
-        $inputFileName = 'xlsx/1.xlsx';
+        // $inputFileName = 'xlsx/1.xlsx';
+        $inputFileName = $file;
         $reader = IOFactory::createReader($type);
         //$reader->setLoadSheetsOnly($sheetname);
         $spreadsheet = $reader->load($inputFileName);
         $range = 'A2:I1000';
         $sheetData = $spreadsheet->getActiveSheet()->rangeToArray($range, null, true, true, true);
         //$sheetname = $spreadsheet->getSheetNames();
-        //dump($sheetData);
+        // dump($sheetData);
+        //return 1;
         $sexes = Trainee::$sexes;
         $pstatuses = Trainee::$pstatuses;
         $allPolitics = Trainee::$allPolitics;
