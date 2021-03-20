@@ -21,6 +21,13 @@ class C2CrudController extends AbstractCrudController
         return C2::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setDefaultSort(['time' => 'DESC'])
+        ;
+    }
+
     public function configureFields(string $pageName): iterable
     {
         return [

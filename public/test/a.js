@@ -4,7 +4,7 @@ function face() {
         "Count":1,
         "logs":[
             {
-                "user_id":"3118",
+                "user_id":"18",
                 "recog_time":"2019-01-01 11:11:11",
                 "recog_type":"face",
                 "photo":"base64",
