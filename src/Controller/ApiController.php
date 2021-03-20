@@ -191,7 +191,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/trainee/import", name="api_xlsx2db")
+     * @Route("/trainees/import", name="api_xlsx2db")
      */
     public function xlsx2db(): Response
     {
@@ -289,7 +289,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/export/trainees", name="export_trainees")
+     * @Route("/trainees/export", name="export_trainees")
      */
     function exportTrainees()
     {
