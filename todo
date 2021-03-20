@@ -1,5 +1,6 @@
 major:
   - checkin
+  - upload
 
 minor:
   - batch action

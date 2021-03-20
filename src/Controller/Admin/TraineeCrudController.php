@@ -52,7 +52,8 @@ class TraineeCrudController extends AbstractCrudController
             TextField::new('address'),
             TextField::new('idnum'),
             AssociationField::new('training'), //->hideOnForm(),
-            ChoiceField::new('skills')->setChoices(Trainee::$allSkills)->allowMultipleChoices(true)->hideOnIndex(),
+            ArrayField::new('skills')->hideOnIndex(),
+            //ChoiceField::new('skills')->setChoices(Trainee::$allSkills)->allowMultipleChoices(true)->hideOnIndex(),
             //ArrayField::new('skills'),
             //CollectionField::new('skills'),
         ];
@@ -85,7 +86,7 @@ class TraineeCrudController extends AbstractCrudController
             ->add('age')
             ->add(ChoiceFilter::new('pstatus')->setChoices(Trainee::$pstatuses)) //->setFormTypeOption('comparison_type', 'ArrayFilter'))
             ->add(ChoiceFilter::new('politics')->setChoices(Trainee::$allPolitics))
-            ->add(ChoiceFilter::new('skills')->setChoices(Trainee::$allSkills))
+            // ->add(ChoiceFilter::new('skills')->setChoices(Trainee::$allSkills))
             //->add(ChoiceFilter::new('skills')->setChoices($this->skills)->canSelectMultiple(true))
         ;
     }
