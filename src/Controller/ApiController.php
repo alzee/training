@@ -287,4 +287,25 @@ class ApiController extends AbstractController
         $resp = ["code" => 0 ];
         return $this->json($resp);
     }
+
+    /**
+     * @Route("/export/trainees", name="export_trainees")
+     */
+    function exportTrainees()
+    {
+        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 12345.6789);
+        dump($sheet);
+        $th = ['a', 'b', 'c', 'd', 'e'];
+        foreach($th as $k => $v){
+            $sheet->setCellValue('A1', 12345.6789);
+        }
+        $file = "xlsx/人员名单.xlsx";
+        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
+        $writer->save($file);
+        dump($spreadsheet);
+
+        return $this->file($file);
+    }
 }
