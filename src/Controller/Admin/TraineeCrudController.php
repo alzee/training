@@ -36,6 +36,13 @@ class TraineeCrudController extends AbstractCrudController
         return Trainee::class;
     }
 
+    public function test()
+    {
+        $adminUrlGenerator = $this->get(AdminUrlGenerator::class);
+ $url = $adminUrlGenerator->set('page', 2)->generateUrl();
+
+    }
+
     public function configureFields(string $pageName): iterable
     {
         return [

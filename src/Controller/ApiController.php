@@ -274,9 +274,10 @@ class ApiController extends AbstractController
             ];
             $p->push($data);
         }
-        rename($inputFileName, "xlsx/old/" . date("Ymd") . ".xlsx");
-        $resp = ["id" => $id];
-        return $this->json($resp);
+        // rename($inputFileName, "xlsx/old/" . date("Ymd") . ".xlsx");
+        $resp = ["code" => 0];
+        //return $this->json($resp);
+        return $this->redirect('http://training/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CTraineeCrudController&menuIndex=1&signature=eQyvciTpQ3MtFA6oYGAAGZmOS2AGV5wdgz_gGBVFpz4&submenuIndex=-1');
     }
 
     /**
