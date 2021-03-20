@@ -295,16 +295,39 @@ class ApiController extends AbstractController
     {
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 12345.6789);
-        dump($sheet);
-        $th = ['a', 'b', 'c', 'd', 'e'];
+        $th = [
+            'A1' => '姓名',
+            'B1' => '年龄',
+            'C1' => '性别',
+            'D1' => '身份',
+            'E1' => '政治面貌',
+            'F1' => '片区',
+            'G1' => '手机',
+            'H1' => '联系地址',
+            'I1' => '身份证号',
+        ];
         foreach($th as $k => $v){
-            $sheet->setCellValue('A1', 12345.6789);
+            $sheet->setCellValue($k, $v);
         }
-        $file = "xlsx/人员名单.xlsx";
+        $trainees = $this->getDoctrine()->getRepository(Trainee::class)->findAll();
+        foreach($trainees as $k => $v){
+            $sheet->setCellValue('A' . ($k + 2), $v->getName());
+            $sheet->setCellValue('B' . ($k + 2), $v->getAge());
+            $sheet->setCellValue('C' . ($k + 2), array_flip(Trainee::$sexes)[$v->getSex()]);
+            $sheet->setCellValue('D' . ($k + 2), array_flip(Trainee::$pstatuses)[$v->getPstatus()]);
+            $sheet->setCellValue('E' . ($k + 2), array_flip(Trainee::$allPolitics)[$v->getPolitics()]);
+            dump($v->getArea());
+            $sheet->setCellValue('F' . ($k + 2), Trainee::$areas[$v->getArea()]);
+            // $sheet->setCellValue('G' . ($k + 2), $v->getPhone());
+            $sheet->getCell('G' . ($k + 2))->setValueExplicit($v->getPhone(), \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+            $sheet->setCellValue('H' . ($k + 2), $v->getAddress());
+            // $sheet->setCellValue('I' . ($k + 2), $v->getIdnum());
+            $sheet->getCell('I' . ($k + 2))->setValueExplicit($v->getIdnum(), \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+        }
+        date_default_timezone_set('Asia/Shanghai');
+        $file = 'xlsx/人员名单' . date('YmdHis') . '.xlsx';
         $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
         $writer->save($file);
-        dump($spreadsheet);
 
         return $this->file($file);
     }
