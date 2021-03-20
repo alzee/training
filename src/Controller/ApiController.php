@@ -327,7 +327,6 @@ class ApiController extends AbstractController
             $sheet->setCellValue('C' . ($k + 2), array_flip(Trainee::$sexes)[$v->getSex()]);
             $sheet->setCellValue('D' . ($k + 2), array_flip(Trainee::$pstatuses)[$v->getPstatus()]);
             $sheet->setCellValue('E' . ($k + 2), array_flip(Trainee::$allPolitics)[$v->getPolitics()]);
-            dump($v->getArea());
             $sheet->setCellValue('F' . ($k + 2), Trainee::$areas[$v->getArea()]);
             // $sheet->setCellValue('G' . ($k + 2), $v->getPhone());
             $sheet->getCell('G' . ($k + 2))->setValueExplicit($v->getPhone(), \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
