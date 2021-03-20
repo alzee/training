@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use App\Entity\Trainee;
 use App\Entity\Training;
 use App\Entity\Checkin;
+use App\Entity\Absence;
 use App\Entity\C2;
 
 class DashboardController extends AbstractDashboardController
@@ -119,6 +120,7 @@ class DashboardController extends AbstractDashboardController
         //]);
 
         //yield MenuItem::linkToCrud('签到记录', 'fa fa-tags', Checkin::class);
+        yield MenuItem::linkToCrud('请假记录', 'fa fa-tags', Absence::class);
         yield MenuItem::linkToCrud('签到记录', 'fa fa-tags', C2::class);
 
         //yield MenuItem::linkToLogout('Logout', 'fa fa-exit');

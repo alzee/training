@@ -115,6 +115,11 @@ class Trainee
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Absence::class, mappedBy="name")
+     */
+    private $absences;
+
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
@@ -136,6 +141,7 @@ class Trainee
     public function __construct()
     {
         $this->training = new ArrayCollection();
+        $this->absences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -312,6 +318,36 @@ class Trainee
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Absence[]
+     */
+    public function getAbsences(): Collection
+    {
+        return $this->absences;
+    }
+
+    public function addAbsence(Absence $absence): self
+    {
+        if (!$this->absences->contains($absence)) {
+            $this->absences[] = $absence;
+            $absence->setName($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAbsence(Absence $absence): self
+    {
+        if ($this->absences->removeElement($absence)) {
+            // set the owning side to null (unless already changed)
+            if ($absence->getName() === $this) {
+                $absence->setName(null);
+            }
+        }
 
         return $this;
     }
