@@ -16,8 +16,6 @@ class ImportGuideController extends DashboardController
      */
     public function guide(): Response
     {
-        return $this->render('import_guide/index.html.twig', [
-            'controller_name' => 'ImportGuideController',
-        ]);
+        return $this->render('import_guide/index.html.twig');
     }
 }
