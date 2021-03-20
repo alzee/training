@@ -356,4 +356,33 @@ class ApiController extends AbstractController
 
         return $this->file($file);
     }
+
+    /**
+     * @Route("/absence/export", name="export_absence")
+     */
+    function exportAbsence()
+    {
+        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $th = [
+            'A1' => '姓名',
+            'B1' => '请假时间',
+            'C1' => '到岗时间',
+        ];
+        foreach($th as $k => $v){
+            $sheet->setCellValue($k, $v);
+        }
+        $absence = $this->getDoctrine()->getRepository(Absence::class)->findBy([], ['leaveAt' => 'DESC']);
+        foreach($absence as $k => $v){
+            $sheet->setCellValue('A' . ($k + 2), $v->getName());
+            $sheet->setCellValue('B' . ($k + 2), $v->getLeaveAt());
+            $sheet->setCellValue('C' . ($k + 2), $v->getBackAt());
+        }
+        date_default_timezone_set('Asia/Shanghai');
+        $file = 'xlsx/考勤记录' . date('YmdHis') . '.xlsx';
+        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
+        $writer->save($file);
+
+        return $this->file($file);
+    }
 }
