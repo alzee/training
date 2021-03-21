@@ -384,4 +384,26 @@ class ApiController extends AbstractController
 
         return $this->file($file);
     }
+
+    /**
+     * @Route("/adduser/{uid}", name="add_use")
+     */
+    function adduser($uid)
+    {
+        $te = $this->getDoctrine()->getRepository(Trainee::class)->find($uid);
+        $data = [
+            "cmd" => "addUser",
+            "user_id" => $uid,
+            "name" => $te->getName(),
+            "id_card" => $te->getIdnum(),
+            "id_valid" => '',
+            "Ic" => '1001',
+        ];
+        $p = new PushController();
+        $p->push($data);
+        $resp = [
+            "code" => 0
+        ];
+        return $this->json($resp);
+    }
 }
