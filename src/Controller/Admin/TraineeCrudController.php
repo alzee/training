@@ -178,11 +178,17 @@ class TraineeCrudController extends AbstractCrudController
 
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
+        $pic = readfile('images/avatar/' . $entityInstance->getId() . '.jpg');
+        dump($pic);
+        $base_pic = 'data:image/jpg;base64,' . base64_encode($pic);
+        $base_pic_urlencoded = urlencode($base_pic);
         $data = [
             "cmd" => "editUser",
             "user_id" => $entityInstance->getId(),
             "name" => $entityInstance->getName(),
             "id_card" => $entityInstance->getIdnum(),
+            "face_template" => 'http://192.168.0.55/images/avatar/' . $entityInstance->getId() . '.jpg',
+            // "face_template" => $base_pic_urlencoded,
             "id_valid" => '',
             "Ic" => '1001',
             "edit_mode" => 0
