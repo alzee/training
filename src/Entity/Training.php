@@ -54,7 +54,7 @@ class Training
 
     /**
      * @ORM\ManyToOne(targetEntity=Status::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $status;
 
