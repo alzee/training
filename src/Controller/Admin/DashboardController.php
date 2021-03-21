@@ -121,7 +121,7 @@ class DashboardController extends AbstractDashboardController
 
         //yield MenuItem::linkToCrud('签到记录', 'fa fa-tags', Checkin::class);
         yield MenuItem::linkToCrud('考勤记录', 'fa fa-clock', Absence::class);
-        // yield MenuItem::linkToCrud('签到记录', 'fa fa-tags', C2::class);
+         yield MenuItem::linkToCrud('签到记录', 'fa fa-tags', C2::class);
 
         //yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
         yield MenuItem::linktoRoute('辅助教学', 'fa fa-award', 'edu');

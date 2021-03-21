@@ -4,7 +4,7 @@ function face() {
         "Count":1,
         "logs":[
             {
-                "user_id":"18",
+                "user_id":"26",
                 "recog_time":"2019-01-01 11:11:11",
                 "recog_type":"face",
                 "photo":"base64",
@@ -17,7 +17,7 @@ function face() {
     }
     data = JSON.stringify(data);
     let xhr = new XMLHttpRequest();
-    let url = 'http://training';
+    let url = window.location.origin;
     xhr.onreadystatechange = function () {
         if(xhr.readyState === XMLHttpRequest.DONE){
             if(xhr.status === 200){
