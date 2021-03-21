@@ -48,7 +48,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/v1/record/face", methods={"POST", "get"}, name="api_face")
+     * @Route("/v1/record/face", methods={"POST"}, name="api_face")
      */
     public function face(Request $request): Response
     {
@@ -80,11 +80,10 @@ class ApiController extends AbstractController
             $c->setGender($d['gender']);
         }
         $em->persist($c);
-        $em->flush();
+        // $em->flush();
 
         //$te = $this->getDoctrine()->getRepository(Trainee::class)->find(18);;
         $te->setCheckinCount($te->getCheckinCount() + 1);
-        dump($te);
         if($te->getCheckinCount() > 1){
             $date = new \DateTimeImmutable("Asia/Shanghai");
             if($te->getCheckinCount() % 2 == 0){
