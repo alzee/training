@@ -207,12 +207,15 @@
         </div>
 
 <div class="mt-3 ml-3">
+  <button class="btn btn-lg btn-primary" type="button" id="batchBtn">批量添加到</button>
   <select id="traininglist" class="custom-select w-25">
   {% for i in trainings %}
   <option value="{{i.id}}">{{i.title}}</option>
   {% endfor %}
   </select>
-  <button class="btn btn-lg btn-primary" type="button" id="batchBtn">添加</button>
+{#
+  <button class="btn btn-lg btn-danger ml-5" type="button" id="batchDel">批量删除</button>
+#}
 </div>
 
         {% if entities|length > 0 %}
