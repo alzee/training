@@ -57,6 +57,11 @@ class Events
        $message_data = json_decode($message, true);
 
        if(isset($message_data['data'])){
+           // 下发失败，照片中没有人脸（1）
+           if($message_data['data']['cmd'] == 'editUserRet' && $message_data['data']['code'] == 1){
+               $uid = $message_data['data']['user_id'];
+               file_get_contents("http://192.168.0.55/api/adduser/" . $uid);
+           }
            if($message_data['data']['cmd'] == 'onlineAuthorizationRet'){
                $pic = $message_data['data']['vl_face_template'];
                $base_img = str_replace('data:image/jpg;base64,', '', urldecode($pic));
