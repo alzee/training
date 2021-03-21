@@ -116,7 +116,7 @@ class Trainee
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Absence::class, mappedBy="name")
+     * @ORM\OneToMany(targetEntity=Absence::class, mappedBy="name", cascade={"remove"})
      */
     private $absences;
 
