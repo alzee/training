@@ -20,12 +20,12 @@ Phone: 手机
 Idnum: 身份证号
 Address: 联系地址
 Skills: 技能
-ID: 编号
+ID: 序号
 shouldCome: 应到
 chooseTrainees: 选择学员
 come: 实到
-Start At: 开始于
-End At: 结束于
+Start At: 开始时间
+End At: 结束时间
 action.detail: 查看
 Status0: 状态
 Image: 照片
