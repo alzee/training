@@ -99,7 +99,9 @@
       <th scope="col">年龄</th>
       <th scope="col">片区</th>
       <th scope="col">身份</th>
+      {#
       <th scope="col">是否签到</th>
+      #}
     </tr>
   </thead>
   <tbody>
@@ -110,7 +112,9 @@
       <td>{{i.age}}</td>
       <td>{{i.area}}</td>
       <td>{{i.pstatus}}</td>
+      {#
       <td></td>
+      #}
     </tr>
     {% endfor %}
       {% endif %}
