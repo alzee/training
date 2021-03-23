@@ -18,12 +18,21 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Controller\Admin\TraineeCrudController;
 use App\Controller\PushController;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 
 /**
  * @Route("/api")
  */
 class ApiController extends AbstractController
 {
+    private $adminUrlGenerator;
+
+    public function __construct(AdminUrlGenerator $adminUrlGenerator)
+    {
+        $this->adminUrlGenerator = $adminUrlGenerator;
+    }
+
     /**
      * @Route("/tg", methods={"POST"}, name="api_tg")
      */
@@ -295,7 +304,13 @@ class ApiController extends AbstractController
         // rename($inputFileName, "xlsx/old/" . date("Ymd") . ".xlsx");
         $resp = ["code" => 0];
         //return $this->json($resp);
-        return $this->redirect('http://training/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CTraineeCrudController&menuIndex=1&signature=eQyvciTpQ3MtFA6oYGAAGZmOS2AGV5wdgz_gGBVFpz4&submenuIndex=-1');
+        
+        $url = $this->adminUrlGenerator
+            ->setDashboard(ImportGuideController::class)
+            ->setController(TraineeCrudController::class)
+            ->setAction(Action::INDEX)
+            ->generateUrl();
+        return $this->redirect($url);
     }
 
     /**
@@ -318,7 +333,7 @@ class ApiController extends AbstractController
      */
     function exportTrainees()
     {
-        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $th = [
             'A1' => '姓名',
@@ -361,7 +376,7 @@ class ApiController extends AbstractController
      */
     function exportAbsence()
     {
-        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $th = [
             'A1' => '姓名',
