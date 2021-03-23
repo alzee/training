@@ -60,7 +60,7 @@ class Events
            // 下发失败，照片中没有人脸（1）
            if($message_data['data']['cmd'] == 'editUserRet' && $message_data['data']['code'] == 1){
                $uid = $message_data['data']['user_id'];
-               file_get_contents("http://192.168.0.55/api/adduser/" . $uid);
+               file_get_contents("http://training/api/adduser/" . $uid);
            }
            if($message_data['data']['cmd'] == 'onlineAuthorizationRet'){
                $pic = $message_data['data']['vl_face_template'];
