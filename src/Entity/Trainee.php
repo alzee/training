@@ -125,6 +125,46 @@ class Trainee
      */
     private $checkinCount = 0;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $level;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $edu;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $company;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $company_property;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $service;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pro_local;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $military_pro;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $hometown;
+
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
@@ -365,6 +405,102 @@ class Trainee
     public function setCheckinCount(?int $checkinCount): self
     {
         $this->checkinCount = $checkinCount;
+
+        return $this;
+    }
+
+    public function getLevel(): ?string
+    {
+        return $this->level;
+    }
+
+    public function setLevel(?string $level): self
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    public function getEdu(): ?string
+    {
+        return $this->edu;
+    }
+
+    public function setEdu(?string $edu): self
+    {
+        $this->edu = $edu;
+
+        return $this;
+    }
+
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?string $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getCompanyProperty(): ?string
+    {
+        return $this->company_property;
+    }
+
+    public function setCompanyProperty(?string $company_property): self
+    {
+        $this->company_property = $company_property;
+
+        return $this;
+    }
+
+    public function getService(): ?string
+    {
+        return $this->service;
+    }
+
+    public function setService(?string $service): self
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    public function getProLocal(): ?string
+    {
+        return $this->pro_local;
+    }
+
+    public function setProLocal(?string $pro_local): self
+    {
+        $this->pro_local = $pro_local;
+
+        return $this;
+    }
+
+    public function getMilitaryPro(): ?string
+    {
+        return $this->military_pro;
+    }
+
+    public function setMilitaryPro(?string $military_pro): self
+    {
+        $this->military_pro = $military_pro;
+
+        return $this;
+    }
+
+    public function getHometown(): ?string
+    {
+        return $this->hometown;
+    }
+
+    public function setHometown(?string $hometown): self
+    {
+        $this->hometown = $hometown;
 
         return $this;
     }
