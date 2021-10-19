@@ -37,6 +37,11 @@ class Absence
      */
     private $name;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $approved;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Absence
     public function setName(?Trainee $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getApproved(): ?bool
+    {
+        return $this->approved;
+    }
+
+    public function setApproved(?bool $approved): self
+    {
+        $this->approved = $approved;
 
         return $this;
     }

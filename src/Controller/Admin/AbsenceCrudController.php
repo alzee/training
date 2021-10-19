@@ -7,6 +7,7 @@ use App\Entity\Trainee;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -39,6 +40,7 @@ class AbsenceCrudController extends AbstractCrudController
             DateTimeField::new('leaveAt')->setFormat('y年MM月dd日 HH:mm:ss')->hideOnForm(),
             DateTimeField::new('backAt')->setFormat('y年MM月dd日 HH:mm:ss')->hideOnForm(),
             TextareaField::new('note'),
+            BooleanField::new('approved'),
         ];
     }
 
