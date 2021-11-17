@@ -39,6 +39,7 @@ class TrainingCrudController extends AbstractCrudController
             DateField::new('endAt')->setFormat('short'),
             //AssociationField::new('status'), //->autocomplete(), //->onlyOnIndex(),
             TextField::new('status0')->hideOnForm(),
+            TextField::new('plan'),
             //ChoiceField::new('status')->setChoices($this->statuses),
             //DateTimeField::new('date')->onlyOnIndex(),
         ];
@@ -49,6 +50,7 @@ class TrainingCrudController extends AbstractCrudController
         return $crud
             // ->setPageTitle('index', '%entity_label_plural% 列表')
             ->overrideTemplate('crud/index', 'index1.html.twig')
+            ->overrideTemplate('crud/new', 'new1.html.twig')
         ;
     }
 
