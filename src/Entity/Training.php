@@ -88,6 +88,11 @@ class Training
      */
     private $instructor;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $plan;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -274,5 +279,17 @@ class Training
             $s = '已结束';
 
         return $s;
+    }
+
+    public function getPlan(): ?string
+    {
+        return $this->plan;
+    }
+
+    public function setPlan(?string $plan): self
+    {
+        $this->plan = $plan;
+
+        return $this;
     }
 }

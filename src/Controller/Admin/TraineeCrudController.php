@@ -59,7 +59,7 @@ class TraineeCrudController extends AbstractCrudController
             TextField::new('address'),
             TextField::new('idnum')->hideOnIndex(),
             TextField::new('level')->hideOnIndex(),
-            TextField::new('edu'),
+            ChoiceField::new('edu')->setChoices(['初中' => 0, '高中' => 1, '大专' => 2, '本科级以上' => 3]),
             TextField::new('company')->hideOnIndex(),
             TextField::new('company_property')->hideOnIndex(),
             TextField::new('service')->hideOnIndex(),
