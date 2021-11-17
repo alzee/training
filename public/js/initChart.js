@@ -3,6 +3,7 @@ let ctx2 = document.getElementById('chart2');
 let ctx3 = document.getElementById('chart3');
 let ctx4 = document.getElementById('chart4');
 let ctx5 = document.getElementById('chart5');
+let ctx6 = document.getElementById('chart6');
 let countTrainees = document.getElementById('countTrainees').dataset.count;
 let d1 = document.querySelectorAll('.areaPeople');
 let d2 = document.querySelectorAll('.ageGroup');
@@ -38,10 +39,18 @@ let data4 = {
     }]
 };
 let data5 = {
-  labels: ['签到', '未到'],
+  labels: ['对口', '非对口'],
   datasets: [{
     backgroundColor: ['#0dcaf0'],
     data: [ctx5.dataset.checkins, ctx5.dataset.shouldcome - ctx5.dataset.checkins]
+  }]
+};
+
+let data6 = {
+  labels: ['初中', '高中', '大专', '本科及以上'],
+  datasets: [{
+    backgroundColor: ['#0dcaf0', '#6174d1', '#1ea471', '#cd3c63'],
+    data: [1, 1, 3, 5]
   }]
 };
 
@@ -112,6 +121,16 @@ let chart4 = new Chart(ctx4, {
 let chart5 = new Chart(ctx5, {
     type: 'doughnut',
     data: data5,
+    options: {
+      legend: {
+        display: false,
+      }
+    }
+});
+
+let chart6 = new Chart(ctx6, {
+    type: 'doughnut',
+    data: data6,
     options: {
       legend: {
         display: false,
