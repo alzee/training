@@ -421,4 +421,27 @@ class ApiController extends AbstractController
         ];
         return $this->json($resp);
     }
+
+    /**
+     * @Route("/batch_del_users", name="batch_del_users")
+     */
+    function batchDelUsers(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $params = json_decode($request->getContent(), true);
+        $trainees = $params['te'];
+        $repo = $this->getDoctrine()->getRepository(Trainee::class);
+        foreach ($trainees as $v) {
+            $trainee = $repo->find($v);
+            $em->remove($trainee);
+            $em->flush();
+        }
+
+        $resp = [
+            "code" => 0
+        ];
+
+        return $this->json($resp);
+    }
 }

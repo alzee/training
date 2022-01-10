@@ -120,4 +120,40 @@ if(btn3){
     btn3.addEventListener('click', capture);
 }
 
+let batchDelBtn = document.querySelector('#batchDel');
+batchDelBtn.addEventListener('click', batchDelete);
+
+function batchDelete() {
+    let tab = document.querySelector('table.table');
+    let tbody = tab.querySelector('tbody');
+    let checkbox = tbody.querySelectorAll('.form-batch-checkbox');
+
+    let trainees = [];
+    for(let i = 0; i < checkbox.length; i++){
+        if(checkbox[i].checked){
+            trainees.push(checkbox[i].value);
+        }
+    }
+    // console.log(trainees);
+
+    let data = { te: trainees };
+    data = JSON.stringify(data);
+    let xhr = new XMLHttpRequest();
+    let url = window.location.origin;
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                res = xhr.response;
+                console.log(res);
+                location.reload(true);
+            }
+        }
+    };
+    xhr.open('POST', url + '/api/batch_del_users');
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.responseType='json';
+    xhr.send(data);
+}
+
 //trainingList();
