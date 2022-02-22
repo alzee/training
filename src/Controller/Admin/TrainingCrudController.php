@@ -74,7 +74,7 @@ class TrainingCrudController extends AbstractCrudController
                 $trainees = $training->getTrainees();
                 foreach($trainees as $v){
                     $v->setArea(Trainee::$areas[$v->getArea()]);
-                    $v->setPstatus(array_flip(Trainee::$pstatuses)[$v->getPstatus()]);
+                    $v->setPstatus(Trainee::$pstatuses[$v->getPstatus()]);
                 }
             }
                 $responseParameters->set('trainees', $trainees);
