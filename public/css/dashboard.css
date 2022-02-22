@@ -1,6 +1,15 @@
 .content .badge div{
   width: 20%;
 }
-
+.circle{
+  width: 1278px;
+  height: 200px;
+}
 .circle .chart-container{
+  width: 18%;
+}
+#area{
+  height: 300px;
+  width: 100%;
+  margin: 3rem 0 5rem 0;
 }

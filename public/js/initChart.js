@@ -27,21 +27,21 @@ let data2 = {
 let data3 = {
   labels: ['退伍军人', '其他'],
   datasets: [{
-    backgroundColor: ['#0dcaf0'],
+    backgroundColor: ['#0dcaf0', '#cbcfd4'],
     data: [d3, countTrainees - d3]
   }]
 };
 let data4 = {
   labels: ['党员', '其他'],
     datasets: [{
-      backgroundColor: ['#0dcaf0'],
+      backgroundColor: ['#0dcaf0', '#cbcfd4'],
       data: [d4, countTrainees - d4]
     }]
 };
 let data5 = {
   labels: ['对口', '非对口'],
   datasets: [{
-    backgroundColor: ['#0dcaf0'],
+    backgroundColor: ['#0dcaf0', '#cbcfd4'],
     data: [ctx5.dataset.checkins, ctx5.dataset.shouldcome - ctx5.dataset.checkins]
   }]
 };
@@ -66,35 +66,39 @@ for (let i = 0; i < d2.length; i++){
   console.log(d2[i].dataset.age);
 }
 
-
-let options = {
-    responsive:true,
-    maintainAspectRatio: false,
-    legend: {
-        display: false,
-    },
-    scales: {
-        xAxes: [{
-            ticks: {
-                beginAtZero: true,
-            }
-        }]
-    }
-};
-
 let chart1 = new Chart(ctx1, {
-    type: 'horizontalBar',
+    type: 'bar',
     data: data1,
-    options: options
+    options: {
+      responsive:true,
+      maintainAspectRatio: false,
+      indexAxis: 'y',
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            beginAtZero: true,
+          }
+        }
+      }
+    }
 });
 
 let chart2 = new Chart(ctx2, {
     type: 'pie',
     data: data2,
     options: {
-      legend: {
-        display: false,
-      }
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
     }
 });
 
@@ -102,9 +106,13 @@ let chart3 = new Chart(ctx3, {
     type: 'doughnut',
     data: data3,
     options: {
-      legend: {
-        display: false,
-      }
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
     }
 });
 
@@ -112,9 +120,13 @@ let chart4 = new Chart(ctx4, {
     type: 'doughnut',
     data: data4,
     options: {
-      legend: {
-        display: false,
-      }
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
     }
 });
 
@@ -122,9 +134,13 @@ let chart5 = new Chart(ctx5, {
     type: 'doughnut',
     data: data5,
     options: {
-      legend: {
-        display: false,
-      }
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
     }
 });
 
@@ -132,8 +148,12 @@ let chart6 = new Chart(ctx6, {
     type: 'doughnut',
     data: data6,
     options: {
-      legend: {
-        display: false,
-      }
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
     }
 });

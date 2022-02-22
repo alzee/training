@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <div class="chart-container my-5">
+  <div class="chart-container" id="area">
     <h3>区域人数分布</h3>
     {% for k,v in areaPeople %}
     <i class="areaPeople d-none" data-area="{{k}}" data-people="{{v}}"></i>
@@ -66,6 +66,6 @@
 {% endblock content %}
 
 {% block body_javascript %}
-<script src="{{ asset('js/Chart.min.js') }}"></script>
+<script src="{{ asset('js/chart.min.js') }}"></script>
 <script src="{{ asset('js/initChart.js') }}"></script>
 {% endblock body_javascript %}
