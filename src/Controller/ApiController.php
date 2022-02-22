@@ -283,6 +283,17 @@ class ApiController extends AbstractController
             $te->setPhone($v['F']);
             $te->setIdnum($v['G']);
             $te->setAddress($v['H']);
+
+            $te->setAddress($v['J']);
+            $te->setAddress($v['K']);
+            $te->setAddress($v['L']);
+            $te->setAddress($v['M']);
+            $te->setAddress($v['N']);
+            $te->setAddress($v['O']);
+            $te->setAddress($v['P']);
+            $te->setAddress($v['Q']);
+            $te->setAddress($v['R']);
+            $te->setAddress($v['S']);
             //$p = new TraineeCrudController();
             //$p->persistEntity($em, $te);
             $em->persist($te);
