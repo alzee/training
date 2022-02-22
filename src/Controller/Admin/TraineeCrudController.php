@@ -81,7 +81,7 @@ class TraineeCrudController extends AbstractCrudController
             TextField::new('hometown')->hideOnIndex(),
             ArrayField::new('skills')->hideOnIndex(),
             AssociationField::new('training'), //->hideOnForm(),
-            ImageField::new('gallery')->onlyOnDetail(), //->hideOnForm(),
+            ArrayField::new('gallery')->onlyOnDetail()->setTemplatePath('t.html.twig'), //->hideOnForm(),
             //ChoiceField::new('skills')->setChoices(Trainee::$allSkills)->allowMultipleChoices(true)->hideOnIndex(),
             //ArrayField::new('skills'),
             //CollectionField::new('skills'),
