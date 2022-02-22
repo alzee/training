@@ -88,6 +88,7 @@ class TraineeCrudController extends AbstractCrudController
             ->addCssClass('btn btn-success')
         ;
         return $actions
+            ->disable(Action::DELETE)
             ->add(Crud::PAGE_DETAIL, $capture)
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
             //->add(Crud::PAGE_EDIT, Action::SAVE_AND_ADD_ANOTHER)
