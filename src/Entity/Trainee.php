@@ -166,6 +166,11 @@ class Trainee
      */
     private $hometown;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isVisible = 1;
+
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
@@ -502,6 +507,18 @@ class Trainee
     public function setHometown(?string $hometown): self
     {
         $this->hometown = $hometown;
+
+        return $this;
+    }
+
+    public function getIsVisible(): ?bool
+    {
+        return $this->isVisible;
+    }
+
+    public function setIsVisible(?bool $isVisible): self
+    {
+        $this->isVisible = $isVisible;
 
         return $this;
     }

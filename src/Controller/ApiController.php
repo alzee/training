@@ -438,9 +438,9 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/batch_del_users", name="batch_del_users")
+     * @Route("/batch_hide_users", name="batch_hide_users")
      */
-    function batchDelUsers(Request $request): Response
+    function batchHideUsers(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -449,7 +449,9 @@ class ApiController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Trainee::class);
         foreach ($trainees as $v) {
             $trainee = $repo->find($v);
-            $em->remove($trainee);
+            $trainee->setIsVisible(0);
+
+            // $em->remove($trainee);
             $em->flush();
         }
 
