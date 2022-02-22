@@ -237,10 +237,11 @@ class ApiController extends AbstractController
         //$sheetname = $spreadsheet->getSheetNames();
         // dump($sheetData);
         //return 1;
-        $sexes = Trainee::$sexes;
-        $pstatuses = Trainee::$pstatuses;
-        $allPolitics = Trainee::$allPolitics;
+        $sexes = array_flip(Trainee::$sexes);
+        $pstatuses = array_flip(Trainee::$pstatuses);
+        $allPolitics = array_flip(Trainee::$allPolitics);
         $areas = array_flip(Trainee::$areas);
+        $degrees = array_flip(Trainee::$degrees);
 
         $em = $this->getDoctrine()->getManager();
         $p = new PushController();
@@ -253,7 +254,9 @@ class ApiController extends AbstractController
                 if(is_null($vv))
                     $v[$kk] = '0';
             }
-            // 如果没有和选项匹配的，设为默认值 0
+
+            $te->setName($v['A']);
+            $te->setAge($v['B']);
             if(isset($sexes[$v['C']])) {
                 $te->setSex($sexes[$v['C']]);
             }
@@ -272,28 +275,29 @@ class ApiController extends AbstractController
             else {
                 $te->setPolitics(0);
             }
+            $te->setPhone($v['F']);
+            $te->setIdnum($v['G']);
+            $te->setAddress($v['H']);
             if(isset($areas[$v['I']])) {
                 $te->setArea($areas[$v['I']]);
             }
             else {
                 $te->setArea(0);
             }
-            $te->setName($v['A']);
-            $te->setAge($v['B']);
-            $te->setPhone($v['F']);
-            $te->setIdnum($v['G']);
-            $te->setAddress($v['H']);
-
-            $te->setAddress($v['J']);
-            $te->setAddress($v['K']);
-            $te->setAddress($v['L']);
-            $te->setAddress($v['M']);
-            $te->setAddress($v['N']);
-            $te->setAddress($v['O']);
-            $te->setAddress($v['P']);
-            $te->setAddress($v['Q']);
-            $te->setAddress($v['R']);
-            $te->setAddress($v['S']);
+            $te->setLevel($v['J']);
+            if(isset($degrees[$v['K']])) {
+                $te->setEdu($degrees[$v['K']]);
+            }
+            else {
+                $te->setEdu(0);
+            }
+            $te->setCompany($v['L']);
+            $te->setCompanyProperty($v['M']);
+            $te->setService($v['N']);
+            $te->setProLocal($v['O']);
+            $te->setMilitaryPro($v['P']);
+            $te->setHometown($v['Q']);
+            $te->setSkills($v['R']);
             //$p = new TraineeCrudController();
             //$p->persistEntity($em, $te);
             $em->persist($te);
@@ -364,9 +368,9 @@ class ApiController extends AbstractController
         foreach($trainees as $k => $v){
             $sheet->setCellValue('A' . ($k + 2), $v->getName());
             $sheet->setCellValue('B' . ($k + 2), $v->getAge());
-            $sheet->setCellValue('C' . ($k + 2), array_flip(Trainee::$sexes)[$v->getSex()]);
-            $sheet->setCellValue('D' . ($k + 2), array_flip(Trainee::$pstatuses)[$v->getPstatus()]);
-            $sheet->setCellValue('E' . ($k + 2), array_flip(Trainee::$allPolitics)[$v->getPolitics()]);
+            $sheet->setCellValue('C' . ($k + 2), Trainee::$sexes[$v->getSex()]);
+            $sheet->setCellValue('D' . ($k + 2), Trainee::$pstatuses[$v->getPstatus()]);
+            $sheet->setCellValue('E' . ($k + 2), Trainee::$allPolitics[$v->getPolitics()]);
             $sheet->setCellValue('F' . ($k + 2), Trainee::$areas[$v->getArea()]);
             // $sheet->setCellValue('G' . ($k + 2), $v->getPhone());
             $sheet->getCell('G' . ($k + 2))->setValueExplicit($v->getPhone(), \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
