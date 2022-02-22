@@ -171,6 +171,11 @@ class Trainee
      */
     private $isVisible = 1;
 
+    /**
+     * @ORM\Column(type="simple_array", nullable=true)
+     */
+    private $gallery = [];
+
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
@@ -519,6 +524,18 @@ class Trainee
     public function setIsVisible(?bool $isVisible): self
     {
         $this->isVisible = $isVisible;
+
+        return $this;
+    }
+
+    public function getGallery(): ?array
+    {
+        return $this->gallery;
+    }
+
+    public function setGallery(?array $gallery): self
+    {
+        $this->gallery = $gallery;
 
         return $this;
     }
