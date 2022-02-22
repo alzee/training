@@ -51,9 +51,9 @@ class TraineeCrudController extends AbstractCrudController
             //AvatarField::new('image'),
             TextField::new('name'),
             IntegerField::new('age'),
-            ChoiceField::new('sex')->setChoices(Trainee::$sexes)->renderExpanded(true),
-            ChoiceField::new('pstatus')->setChoices(Trainee::$pstatuses),
-            ChoiceField::new('politics')->setChoices(Trainee::$allPolitics),
+            ChoiceField::new('sex')->setChoices(array_flip(Trainee::$sexes))->renderExpanded(true),
+            ChoiceField::new('pstatus')->setChoices(array_flip(Trainee::$pstatuses)),
+            ChoiceField::new('politics')->setChoices(array_flip(Trainee::$allPolitics)),
             TextField::new('phone'),
             TextField::new('idnum')->hideOnIndex(),
             TextField::new('address'),
@@ -99,8 +99,8 @@ class TraineeCrudController extends AbstractCrudController
         return $filters
             ->add(ChoiceFilter::new('area')->setChoices(array_flip(Trainee::$areas)))
             ->add('age')
-            ->add(ChoiceFilter::new('pstatus')->setChoices(Trainee::$pstatuses)) //->setFormTypeOption('comparison_type', 'ArrayFilter'))
-            ->add(ChoiceFilter::new('politics')->setChoices(Trainee::$allPolitics))
+            ->add(ChoiceFilter::new('pstatus')->setChoices(array_flip(Trainee::$pstatuses))) //->setFormTypeOption('comparison_type', 'ArrayFilter'))
+            ->add(ChoiceFilter::new('politics')->setChoices(array_flip(Trainee::$allPolitics)))
             // ->add(ChoiceFilter::new('skills')->setChoices(Trainee::$allSkills))
             //->add(ChoiceFilter::new('skills')->setChoices($this->skills)->canSelectMultiple(true))
         ;
