@@ -171,11 +171,6 @@ class Trainee
      */
     private $isVisible = 1;
 
-    /**
-     * @ORM\Column(type="simple_array", nullable=true)
-     */
-    private $gallery = [];
-
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
@@ -530,13 +525,15 @@ class Trainee
 
     public function getGallery(): ?array
     {
-        return $this->gallery;
-    }
+        $dir = "images/gallery/" . $this->name . "/";
+        $gallery = [];
 
-    public function setGallery(?array $gallery): self
-    {
-        $this->gallery = $gallery;
+        foreach (new \DirectoryIterator($dir) as $file) {
+            if($file->isDot()) continue;
+            array_push($gallery, $dir . $file->getFilename());
+            // print $file->getFilename() . '<br>';
+        }
 
-        return $this;
+        return $gallery;
     }
 }
