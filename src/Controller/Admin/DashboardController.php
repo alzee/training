@@ -124,7 +124,7 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('签到记录', 'fa fa-tags', C2::class);
 
         //yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
-        yield MenuItem::linktoRoute('电子档案', 'fa fa-award', 'edu');
+        yield MenuItem::linkToCrud('电子档案', 'fa fa-award', Trainee::class)->setController(GalleryCrudController::class);
     }
 
     public function configureCrud(): Crud

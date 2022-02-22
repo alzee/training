@@ -528,10 +528,12 @@ class Trainee
         $dir = "images/gallery/" . $this->name . "/";
         $gallery = [];
 
-        foreach (new \DirectoryIterator($dir) as $file) {
+        if (file_exists($dir)) {
+          foreach (new \DirectoryIterator($dir) as $file) {
             if($file->isDot()) continue;
             array_push($gallery, $dir . $file->getFilename());
             // print $file->getFilename() . '<br>';
+          }
         }
 
         return $gallery;
