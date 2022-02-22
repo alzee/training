@@ -452,6 +452,15 @@ class ApiController extends AbstractController
             $trainee->setIsVisible(0);
 
             // $em->remove($trainee);
+
+            // $data = [
+            //     "cmd" => "delUser",
+            //     "user_id" => $v,
+            //     "user_type" => '0',
+            // ];
+            // $p = new PushController();
+            // $p->push($data);
+
             $em->flush();
         }
 
