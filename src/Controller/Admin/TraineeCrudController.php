@@ -16,6 +16,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Filter\ArrayFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\ChoiceFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -81,7 +82,7 @@ class TraineeCrudController extends AbstractCrudController
             TextField::new('hometown')->hideOnIndex(),
             ArrayField::new('skills')->hideOnIndex(),
             AssociationField::new('training'), //->hideOnForm(),
-            ArrayField::new('gallery')->onlyOnDetail()->setTemplatePath('t.html.twig'), //->hideOnForm(),
+            // UrlField::new('gallery_link')->onlyOnDetail()->setValue('adsaf'),
             //ChoiceField::new('skills')->setChoices(Trainee::$allSkills)->allowMultipleChoices(true)->hideOnIndex(),
             //ArrayField::new('skills'),
             //CollectionField::new('skills'),
