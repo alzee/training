@@ -1,6 +1,7 @@
 major:
 
 minor:
+  - move code from TraineeCrudController::deleteEntity() to doctrine preRemove()/postRemove()
   - batch action
   - filter operand
   - assosiation default value (training status)
