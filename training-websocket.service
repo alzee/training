@@ -1,0 +1,17 @@
+[Unit]
+Description=Websocket for training app
+
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+User=apache
+Group=apache
+Type=simple
+ExecStart=/usr/bin/php /home/al/w/training/start.php start
+Restart=on-failure
+RestartSec=10
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
