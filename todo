@@ -8,6 +8,12 @@ minor:
 
 questions:
 
+notes:
+  - 监控主机账号密码 admin Abc123456
+  - 监控主机手势密码 L
+  - 路由器WIFI密码 12345678
+  - 路由器管理账号密码 admin 12345678
+
 
 
 # vim:ft=yaml
