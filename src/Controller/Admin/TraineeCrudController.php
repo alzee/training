@@ -154,39 +154,6 @@ class TraineeCrudController extends AbstractCrudController
         return $responseParameters;
     }
 
-    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-        $entityManager->persist($entityInstance);
-        $entityManager->flush();
-
-        //$newId = $this->getDoctrine()->getRepository(Trainee::class)->findBy([], ["id" => "DESC"], 1)[0]->getId() + 1;
-        $id = $entityInstance->getId();
-        $entityInstance->setImage($id . '.jpg');
-        $entityManager->persist($entityInstance);
-        $entityManager->flush();
-
-        $prefix = 'images/avatar/';
-        copy($prefix . 'avatar.jpg', $prefix . $id . '.jpg');
-
-        $data = [
-            "cmd" => "addUser",
-            //"cmd" => "onlineAuthorization",
-            //"cmd" => "editUser",
-            //"cmd" => "delUser",
-            //"cmd" => "delMultiUserRet",
-            //"cmd" => "delAllUser",
-            "user_id" => $id,
-            "name" => $entityInstance->getName(),
-            "id_card" => $entityInstance->getIdnum(),
-            "id_valid" => '',
-            // 验证模式为人脸或卡时照片才不是非必填，但此模式下 Ic 必填
-            "Ic" => '1001',
-        ];
-        $p = new PushController();
-        $p->push($data);
-
-    }
-
     public function deleteEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         $data = [

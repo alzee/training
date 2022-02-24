@@ -244,7 +244,6 @@ class ApiController extends AbstractController
         $degrees = array_flip(Trainee::$degrees);
 
         $em = $this->getDoctrine()->getManager();
-        $p = new PushController();
         foreach($sheetData as $k => $v){
             $te = new Trainee();
             // 如果姓名为空，我们就当作后面没有了
@@ -302,19 +301,6 @@ class ApiController extends AbstractController
             //$p->persistEntity($em, $te);
             $em->persist($te);
             $em->flush();
-
-            $id = $te->getId();
-            //$newId = $this->getDoctrine()->getRepository(Trainee::class)->findBy([], ["id" => "DESC"], 1)[0]->getId() + 1;
-            $data = [
-                "cmd" => "addUser",
-                "user_id" => $id,
-                "name" => $v['A'],
-                "id_card" => $v['G'],
-                "id_valid" => '',
-                // 验证模式为人脸或卡时照片才不是非必填，但此模式下 Ic 必填
-                "Ic" => '1001',
-            ];
-            $p->push($data);
         }
         // rename($inputFileName, "xlsx/old/" . date("Ymd") . ".xlsx");
         $resp = ["code" => 0];
