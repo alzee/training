@@ -232,7 +232,7 @@ class ApiController extends AbstractController
         $reader = IOFactory::createReader($type);
         //$reader->setLoadSheetsOnly($sheetname);
         $spreadsheet = $reader->load($inputFileName);
-        $range = 'A2:I1000';
+        $range = 'A2:R1000';
         $sheetData = $spreadsheet->getActiveSheet()->rangeToArray($range, null, true, true, true);
         //$sheetname = $spreadsheet->getSheetNames();
         // dump($sheetData);
@@ -297,7 +297,7 @@ class ApiController extends AbstractController
             $te->setProLocal($v['O']);
             $te->setMilitaryPro($v['P']);
             $te->setHometown($v['Q']);
-            $te->setSkills($v['R']);
+            // $te->setSkills($v['R']);
             //$p = new TraineeCrudController();
             //$p->persistEntity($em, $te);
             $em->persist($te);
