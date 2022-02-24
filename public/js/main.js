@@ -121,7 +121,9 @@ if(btn3){
 }
 
 let batchDelBtn = document.querySelector('#batchDel');
-batchDelBtn.addEventListener('click', batchHide);
+if (batchDelBtn) {
+    batchDelBtn.addEventListener('click', batchHide);
+}
 
 function batchHide() {
     let tab = document.querySelector('table.table');
