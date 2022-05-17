@@ -20,7 +20,7 @@ final class Version20220517100847 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE trainee ADD face TINYINT(1) DEFAULT NULL, DROP test');
+        $this->addSql('ALTER TABLE trainee ADD face TINYINT(1) DEFAULT NULL, DROP if exists test');
     }
 
     public function down(Schema $schema): void
