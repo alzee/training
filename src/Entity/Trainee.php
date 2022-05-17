@@ -96,7 +96,7 @@ class Trainee
 
     /**
      * @Groups({"trainee:read"})
-     * @ORM\ManyToMany(targetEntity=Training::class, inversedBy="trainees")
+     * @ORM\ManyToMany(targetEntity=Training::class, inversedBy="trainees", cascade={"remove"})
      */
     private $training;
 

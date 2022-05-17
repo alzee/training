@@ -66,7 +66,7 @@ class Training
 
     /**
      * @Groups({"training:read", "training:write"})
-     * @ORM\OneToMany(targetEntity=Checkin::class, mappedBy="training")
+     * @ORM\OneToMany(targetEntity=Checkin::class, mappedBy="training", cascade={"remove"})
      */
     private $checkins;
 
