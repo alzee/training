@@ -319,6 +319,11 @@ class ApiController extends AbstractController
      */
     function capture($uid)
     {
+        $em = $this->getDoctrine()->getManager();
+        $trainee = $this->getDoctrine()->getRepository(Trainee::class)->find($uid);
+        $trainee->setFace(true);
+        $em->flush();
+
         $p = new PushController();
         $data = [
             "cmd" => "onlineAuthorization"
