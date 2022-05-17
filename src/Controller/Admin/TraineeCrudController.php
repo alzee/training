@@ -41,7 +41,7 @@ class TraineeCrudController extends AbstractCrudController
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
         $response = $this->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
-        $response->andWhere('entity.isVisible = 1');
+        // $response->andWhere('entity.isVisible = 1');
         return $response;
     }
 
@@ -60,7 +60,7 @@ class TraineeCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->onlyOnIndex(),
+            IdField::new('uid')->onlyOnIndex(),
             ImageField::new('image')->setUploadDir('public/images')->setBasePath('/images/avatar')->addCssClass('avatar')->hideOnForm(),
             //AvatarField::new('image'),
             TextField::new('name'),
