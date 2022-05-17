@@ -171,6 +171,11 @@ class Trainee
      */
     private $isVisible = 1;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $face;
+
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
@@ -537,5 +542,17 @@ class Trainee
         }
 
         return $gallery;
+    }
+
+    public function getFace(): ?bool
+    {
+        return $this->face;
+    }
+
+    public function setFace(?bool $face): self
+    {
+        $this->face = $face;
+
+        return $this;
     }
 }
