@@ -176,6 +176,11 @@ class Trainee
      */
     private $face;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $uid;
+
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
@@ -552,6 +557,18 @@ class Trainee
     public function setFace(?bool $face): self
     {
         $this->face = $face;
+
+        return $this;
+    }
+
+    public function getUid(): ?int
+    {
+        return $this->uid;
+    }
+
+    public function setUid(?int $uid): self
+    {
+        $this->uid = $uid;
 
         return $this;
     }

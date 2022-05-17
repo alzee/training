@@ -15,6 +15,12 @@ use App\Controller\PushController;
 
 class TraineeChange extends AbstractController
 {
+    public function prePersist(Trainee $trainee, LifecycleEventArgs $event): void
+    {
+        $count = $this->getDoctrine()->getRepository(Trainee::class)->count([]);
+        $trainee->setUid($count + 1);
+    }
+
     public function postPersist(Trainee $trainee, LifecycleEventArgs $event): void
     {
         $em = $event->getEntityManager();
