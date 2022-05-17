@@ -72,7 +72,7 @@ class Trainee
     static $pstatuses = ['民兵', '退役军人', '军人'];
     static $allPolitics = ['群众', '党员', '团员'];
     static $areas = ['城关镇', '溢水镇', '官渡镇', '麻家渡镇', '宝丰镇', '擂鼓镇', '秦古镇', '得胜镇', '上庸镇', '田家坝镇', '楼台乡', '文峰乡', '潘口乡', '竹坪乡', '深河乡', '大庙乡', '双台乡', '柳林乡', '农林四场'];
-    static $degrees = ['初中', '高中', '大专', '本科级以上'];
+    static $degrees = ['初中', '高中', '大专', '本科及以上'];
 
     /**
      * @ORM\Column(type="string", length=15, nullable=true)
