@@ -36,7 +36,7 @@ class DashboardController extends AbstractDashboardController
         $countTrainees = count($trainees);
         $countSoldiers = count($soldiers);
         $countPartyMembers = count($partyMembers);
-        $countCheckins = count($checkins);
+        $countCheckins = count($trainees);
 
         $areas = Trainee::$areas;
 
