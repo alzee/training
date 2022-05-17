@@ -13,7 +13,7 @@ use App\Entity\Trainee;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use App\Controller\PushController;
 
-class TraineeNew extends AbstractController
+class TraineeChange extends AbstractController
 {
     public function postPersist(Trainee $trainee, LifecycleEventArgs $event): void
     {
@@ -42,5 +42,32 @@ class TraineeNew extends AbstractController
         $p = new PushController();
         $p->push($data);
     }
-}
 
+    public function postUpdate(Trainee $trainee, LifecycleEventArgs $event): void
+    {
+        $data = [
+            "cmd" => "editUser",
+            "user_id" => $trainee->getId(),
+            "name" => $trainee->getName(),
+            "id_card" => $trainee->getIdnum(),
+            //"face_template" => 'http://192.168.0.55/images/avatar/' . $trainee->getId() . '.jpg',
+            // "face_template" => $base_pic_urlencoded,
+            "id_valid" => '',
+            "Ic" => '1001',
+            "edit_mode" => 1
+        ];
+        $p = new PushController();
+        $p->push($data);
+    }
+
+    public function preRemove(Trainee $trainee, LifecycleEventArgs $event): void
+    {
+        $data = [
+            "cmd" => "delUser",
+            "user_id" => $trainee->getId(),
+            "user_type" => '0',
+        ];
+        $p = new PushController();
+        $p->push($data);
+    }
+}

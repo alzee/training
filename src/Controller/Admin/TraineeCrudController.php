@@ -153,40 +153,4 @@ class TraineeCrudController extends AbstractCrudController
 
         return $responseParameters;
     }
-
-    public function deleteEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-        $data = [
-            "cmd" => "delUser",
-            "user_id" => $entityInstance->getId(),
-            "user_type" => '0',
-        ];
-        $p = new PushController();
-        $p->push($data);
-        $entityManager->remove($entityInstance);
-        $entityManager->flush();
-    }
-
-    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-        //$pic = readfile('images/avatar/' . $entityInstance->getId() . '.jpg');
-        //dump($pic);
-        //$base_pic = 'data:image/jpg;base64,' . base64_encode($pic);
-        //$base_pic_urlencoded = urlencode($base_pic);
-        $data = [
-            "cmd" => "editUser",
-            "user_id" => $entityInstance->getId(),
-            "name" => $entityInstance->getName(),
-            "id_card" => $entityInstance->getIdnum(),
-            //"face_template" => 'http://192.168.0.55/images/avatar/' . $entityInstance->getId() . '.jpg',
-            // "face_template" => $base_pic_urlencoded,
-            "id_valid" => '',
-            "Ic" => '1001',
-            "edit_mode" => 1
-        ];
-        $p = new PushController();
-        $p->push($data);
-        $entityManager->persist($entityInstance);
-        $entityManager->flush();
-    }
 }
