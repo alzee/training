@@ -431,7 +431,7 @@ class ApiController extends AbstractController
     /**
      * @Route("/batch_del_users", name="batch_del_users")
      */
-    function batchHideUsers(Request $request): Response
+    function batchDelUsers(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
 
