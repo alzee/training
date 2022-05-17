@@ -30,7 +30,7 @@ class DashboardController extends AbstractDashboardController
         $trainees = $this->getDoctrine()->getRepository(Trainee::class)->findAll();
         $soldiers = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['pstatus' => '1']);
         $partyMembers = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['politics' => '1']);
-        $faces = $this->getDoctrine()->getRepository(Trainee::class)->findAll();
+        $faces = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['face' => true]);
         $trainings = $this->getDoctrine()->getRepository(Training::class)->findAll();
         $checkins = $this->getDoctrine()->getRepository(Checkin::class)->findAll();
         $countTrainees = count($trainees);
