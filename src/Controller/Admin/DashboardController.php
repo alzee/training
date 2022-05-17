@@ -97,7 +97,6 @@ class DashboardController extends AbstractDashboardController
             "ageGroup" => $ageGroup,
             "degreeGroup" => $degreeGroup,
         ];
-        dump($data);
         return $this->render('dashboard.html.twig', $data);
     }
 
