@@ -51,6 +51,7 @@ class DashboardController extends AbstractDashboardController
             "37-45" => 0,
             "46岁以上" => 0
             ];
+        $degreeGroup = [0, 0, 0, 0];
         foreach($trainees as $v){
             $countShouldCome += count($v->getTraining());
 
@@ -79,6 +80,8 @@ class DashboardController extends AbstractDashboardController
             else{
                 $ageGroup["46岁以上"] += 1;
             }
+
+            $degreeGroup[$v->getEdu()] += 1;
         }
 
         $data = [
@@ -91,8 +94,10 @@ class DashboardController extends AbstractDashboardController
             "countCheckins" => $countCheckins,
             "countShouldCome" => $countShouldCome,
             "areaPeople" => $areaPeople,
-            "ageGroup" => $ageGroup
+            "ageGroup" => $ageGroup,
+            "degreeGroup" => $degreeGroup,
         ];
+        dump($data);
         return $this->render('dashboard.html.twig', $data);
     }
 

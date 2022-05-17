@@ -9,6 +9,7 @@ let d1 = document.querySelectorAll('.areaPeople');
 let d2 = document.querySelectorAll('.ageGroup');
 let d3 = ctx3.dataset.soldiers;
 let d4 = ctx4.dataset.partymembers;
+let d6 = document.querySelectorAll('.degreeGroup');
 let data1 = {
   labels: [],
   datasets: [{
@@ -50,7 +51,7 @@ let data6 = {
   labels: ['初中', '高中', '大专', '本科及以上'],
   datasets: [{
     backgroundColor: ['#0dcaf0', '#6174d1', '#1ea471', '#cd3c63'],
-    data: [1, 1, 3, 5]
+    data: []
   }]
 };
 
@@ -64,6 +65,10 @@ for (let i = 0; i < d2.length; i++){
   data2.labels.push((d2[i].dataset.age));
   data2.datasets[0].data.push((d2[i].dataset.people));
   console.log(d2[i].dataset.age);
+}
+for (let i = 0; i < d6.length; i++){
+  data6.labels.push((d6[i].dataset.degree));
+  data6.datasets[0].data.push((d6[i].dataset.people));
 }
 
 let chart1 = new Chart(ctx1, {

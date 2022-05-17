@@ -58,6 +58,9 @@
     </div>
     <div class="chart-container">
       <h3>学历分布</h3>
+      {% for k,v in degreeGroup %}
+      <i class="degreeGroup d-none" data-degree="{{k}}" data-people="{{v}}"></i>
+      {% endfor %}
       <canvas id="chart6"></canvas>
     </div>
   </div>
