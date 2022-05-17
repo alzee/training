@@ -122,10 +122,10 @@ if(btn3){
 
 let batchDelBtn = document.querySelector('#batchDel');
 if (batchDelBtn) {
-    batchDelBtn.addEventListener('click', batchHide);
+    batchDelBtn.addEventListener('click', batchDel);
 }
 
-function batchHide() {
+function batchDel() {
     let tab = document.querySelector('table.table');
     let tbody = tab.querySelector('tbody');
     let checkbox = tbody.querySelectorAll('.form-batch-checkbox');
@@ -151,7 +151,7 @@ function batchHide() {
             }
         }
     };
-    xhr.open('POST', url + '/api/batch_hide_users');
+    xhr.open('POST', url + '/api/batch_del_users');
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.responseType='json';

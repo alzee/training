@@ -424,7 +424,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/batch_hide_users", name="batch_hide_users")
+     * @Route("/batch_del_users", name="batch_del_users")
      */
     function batchHideUsers(Request $request): Response
     {
@@ -435,17 +435,17 @@ class ApiController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Trainee::class);
         foreach ($trainees as $v) {
             $trainee = $repo->find($v);
-            $trainee->setIsVisible(0);
+            // $trainee->setIsVisible(0);
 
-            // $em->remove($trainee);
+            $em->remove($trainee);
 
-            // $data = [
-            //     "cmd" => "delUser",
-            //     "user_id" => $v,
-            //     "user_type" => '0',
-            // ];
-            // $p = new PushController();
-            // $p->push($data);
+            $data = [
+                "cmd" => "delUser",
+                "user_id" => $v,
+                "user_type" => '0',
+            ];
+            $p = new PushController();
+            $p->push($data);
 
             $em->flush();
         }
