@@ -62,19 +62,21 @@ class DashboardController extends AbstractDashboardController
                 $areaPeople[$areas[$v->getArea()]] += 1;
             }
 
-            if($v->getAge() < 18){
+            $age = date("Y") - substr($v->getIdnum(), 6, 4);
+
+            if($age < 18){
                 $ageGroup["18岁以下"] += 1;
             }
-            else if($v->getAge() < 24){
+            else if($age < 24){
                 $ageGroup["18-23"] += 1;
             }
-            else if($v->getAge() < 30){
+            else if($age < 30){
                 $ageGroup["24-29"] += 1;
             }
-            else if($v->getAge() < 37){
+            else if($age < 37){
                 $ageGroup["30-36"] += 1;
             }
-            else if($v->getAge() < 46){
+            else if($age < 46){
                 $ageGroup["37-45"] += 1;
             }
             else{
