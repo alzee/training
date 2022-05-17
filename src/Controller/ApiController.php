@@ -255,50 +255,33 @@ class ApiController extends AbstractController
             }
 
             $te->setName($v['A']);
-            $te->setAge($v['B']);
-            if(isset($sexes[$v['C']])) {
-                $te->setSex($sexes[$v['C']]);
+            if(isset($sexes[$v['B']])) {
+                $te->setSex($sexes[$v['B']]);
             }
             else {
                 $te->setSex(0);
             }
-            if(isset($pstatuses[$v['D']])) {
-                $te->setPstatus($pstatuses[$v['D']]);
-            }
-            else {
-                $te->setPstatus(0);
-            }
-            if(isset($allPolitics[$v['E']])) {
-                $te->setPolitics($allPolitics[$v['E']]);
+            if(isset($allPolitics[$v['C']])) {
+                $te->setPolitics($allPolitics[$v['C']]);
             }
             else {
                 $te->setPolitics(0);
             }
-            $te->setPhone($v['F']);
-            $te->setIdnum($v['G']);
-            $te->setAddress($v['H']);
-            if(isset($areas[$v['I']])) {
-                $te->setArea($areas[$v['I']]);
-            }
-            else {
-                $te->setArea(0);
-            }
-            $te->setLevel($v['J']);
-            if(isset($degrees[$v['K']])) {
-                $te->setEdu($degrees[$v['K']]);
+            $te->setPhone($v['D']);
+            $te->setIdnum($v['E']);
+            $te->setLevel($v['F']);
+            if(isset($degrees[$v['G']])) {
+                $te->setEdu($degrees[$v['G']]);
             }
             else {
                 $te->setEdu(0);
             }
-            $te->setCompany($v['L']);
-            $te->setCompanyProperty($v['M']);
-            $te->setService($v['N']);
-            $te->setProLocal($v['O']);
-            $te->setMilitaryPro($v['P']);
-            $te->setHometown($v['Q']);
-            // $te->setSkills($v['R']);
-            //$p = new TraineeCrudController();
-            //$p->persistEntity($em, $te);
+            $te->setCompany($v['H']);
+            $te->setCompanyProperty($v['I']);
+            $te->setService($v['J']);
+            $te->setProLocal($v['K']);
+            $te->setMilitaryPro($v['L']);
+            $te->setHometown($v['M']);
             $em->persist($te);
             $em->flush();
         }

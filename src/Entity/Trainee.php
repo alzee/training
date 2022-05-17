@@ -39,7 +39,7 @@ class Trainee
     /**
      * @Groups({"training:read"})
      * @Groups({"trainee:read", "trainee:write"})
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $age;
 
@@ -51,7 +51,7 @@ class Trainee
     /**
      * @Groups({"training:read"})
      * @Groups({"trainee:read", "trainee:write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $pstatus;
 
@@ -63,7 +63,7 @@ class Trainee
     /**
      * @Groups({"training:read"})
      * @Groups({"trainee:read", "trainee:write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $area;
 
