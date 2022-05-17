@@ -93,6 +93,11 @@ class Training
      */
     private $plan;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $tid;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -289,6 +294,18 @@ class Training
     public function setPlan(?string $plan): self
     {
         $this->plan = $plan;
+
+        return $this;
+    }
+
+    public function getTid(): ?int
+    {
+        return $this->tid;
+    }
+
+    public function setTid(?int $tid): self
+    {
+        $this->tid = $tid;
 
         return $this;
     }
