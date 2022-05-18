@@ -57,7 +57,7 @@ class DashboardController extends AbstractDashboardController
 
             if(!isset($areaPeople[$v->getArea()])){
                 // why do this? I don't remember
-                // $areaPeople[$v->getArea()] = 0;
+                $areaPeople[$v->getArea()] = 0;
             }
             $areaPeople[$v->getArea()] += 1;
 
