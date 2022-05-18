@@ -28,7 +28,7 @@ class DashboardController extends AbstractDashboardController
     {
         //return parent::index();
         $trainees = $this->getDoctrine()->getRepository(Trainee::class)->findAll();
-        $soldiers = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['pstatus' => '1']);
+        $soldiers = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['service' => '退役士兵']);
         $partyMembers = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['politics' => '1']);
         $faces = $this->getDoctrine()->getRepository(Trainee::class)->findBy(['face' => true]);
         $trainings = $this->getDoctrine()->getRepository(Training::class)->findAll();
