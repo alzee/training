@@ -19,6 +19,7 @@ class TraineeChange extends AbstractController
     {
         $count = $this->getDoctrine()->getRepository(Trainee::class)->count([]);
         $trainee->setUid($count + 1);
+        $trainee->setArea(preg_replace('/.*竹山县/', '', $trainee->getHometown()));
     }
 
     public function postPersist(Trainee $trainee, LifecycleEventArgs $event): void

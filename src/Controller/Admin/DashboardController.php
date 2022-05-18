@@ -55,12 +55,11 @@ class DashboardController extends AbstractDashboardController
         foreach($trainees as $v){
             $countShouldCome += count($v->getTraining());
 
-            if(isset($areas[$v->getArea()])){
-                if(!isset($areaPeople[$areas[$v->getArea()]])){
-                    $areaPeople[$areas[$v->getArea()]] = 0;
-                }
-                $areaPeople[$areas[$v->getArea()]] += 1;
+            if(!isset($areaPeople[$v->getArea()])){
+                // why do this? I don't remember
+                // $areaPeople[$v->getArea()] = 0;
             }
+            $areaPeople[$v->getArea()] += 1;
 
             $age = date("Y") - substr($v->getIdnum(), 6, 4);
 
