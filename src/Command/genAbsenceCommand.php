@@ -36,7 +36,7 @@ class GenAbsenceCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function execute(InputInterface $input, OutputInterface $output): int 
     {
         $io = new SymfonyStyle($input, $output);
         $count = $input->getOption('count');
@@ -50,25 +50,25 @@ class GenAbsenceCommand extends Command
             
             // Random date between start and end of year
             $timestamp = mt_rand($startDate->getTimestamp(), $endDate->getTimestamp());
-            $date = new DateTime();
-            $date->setTimestamp($timestamp);
+            $leaveAt = new DateTime();
+            $leaveAt->setTimestamp($timestamp);
             
             // Random duration between 1-5 days
             $duration = mt_rand(1, 5);
             $endTimestamp = $timestamp + ($duration * 24 * 60 * 60);
-            $endDate = new DateTime();
-            $endDate->setTimestamp($endTimestamp);
+            $backAt = new DateTime();
+            $backAt->setTimestamp($endTimestamp);
 
-            $absence->setStartDate($date);
-            $absence->setEndDate($endDate);
-            $absence->setType(self::ABSENCE_TYPES[array_rand(self::ABSENCE_TYPES)]);
-            $absence->setDescription('Generated test absence');
+            $absence->setLeaveAt($leaveAt);
+            $absence->setBackAt($backAt);
+            $absence->setNote('Generated test absence');
+            $absence->setApproved(mt_rand(0, 1) === 1);
 
             $this->em->persist($absence);
             
             $io->writeln(sprintf('Generated absence: %s to %s (%d days)',
-                $date->format('Y-m-d'),
-                $endDate->format('Y-m-d'),
+                $leaveAt->format('Y-m-d'),
+                $backAt->format('Y-m-d'),
                 $duration
             ));
         }
