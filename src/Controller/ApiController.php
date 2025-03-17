@@ -282,6 +282,7 @@ class ApiController extends AbstractController
             $te->setProLocal($v['K']);
             $te->setMilitaryPro($v['L']);
             $te->setHometown($v['M']);
+            $te->setQishu($v['N']);
             $em->persist($te);
             $em->flush();
         }
@@ -343,9 +344,11 @@ class ApiController extends AbstractController
             $sheet->setCellValue('A' . ($k + 2), $v->getName());
             $sheet->setCellValue('B' . ($k + 2), $v->getAge());
             $sheet->setCellValue('C' . ($k + 2), Trainee::$sexes[$v->getSex()]);
-            $sheet->setCellValue('D' . ($k + 2), Trainee::$pstatuses[$v->getPstatus()]);
+            if (null !== $v->getPstatus()) {
+                $sheet->setCellValue('D' . ($k + 2), Trainee::$pstatuses[$v->getPstatus()]);
+            }
             $sheet->setCellValue('E' . ($k + 2), Trainee::$allPolitics[$v->getPolitics()]);
-            $sheet->setCellValue('F' . ($k + 2), Trainee::$areas[$v->getArea()]);
+            $sheet->setCellValue('F' . ($k + 2), $v->getArea());
             // $sheet->setCellValue('G' . ($k + 2), $v->getPhone());
             $sheet->getCell('G' . ($k + 2))->setValueExplicit($v->getPhone(), \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $sheet->setCellValue('H' . ($k + 2), $v->getAddress());
