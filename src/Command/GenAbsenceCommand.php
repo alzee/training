@@ -10,12 +10,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Absence;
+use App\Entity\Trainee;
 use DateTime;
 
 class GenAbsenceCommand extends Command
 {
-    private const ABSENCE_TYPES = ['sick', 'vacation', 'personal'];
-    private const NUM_RECORDS = 20;
+    private const ABSENCE_TYPES = ['病假', '外出', '事假'];
+    private const NUM_RECORDS = 50;
     
     protected static $defaultName = 'app:gen-absence';
     protected static $defaultDescription = 'Generate random absence records for testing';
@@ -41,9 +42,12 @@ class GenAbsenceCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $count = $input->getOption('count');
 
-        $startYear = date('Y');
+        // $startYear = date('Y');
+        $startYear = '2024';
         $startDate = new DateTime("$startYear-01-01");
         $endDate = new DateTime("$startYear-12-31");
+
+        $trainees = $this->em->getRepository(Trainee::class)->findAll();
 
         for ($i = 0; $i < $count; $i++) {
             $absence = new Absence();
@@ -59,9 +63,10 @@ class GenAbsenceCommand extends Command
             $backAt = new DateTime();
             $backAt->setTimestamp($endTimestamp);
 
+            $absence->setName($trainees[rand(0, count($trainees) - 1)]);
             $absence->setLeaveAt($leaveAt);
             $absence->setBackAt($backAt);
-            $absence->setNote('Generated test absence');
+            $absence->setNote(self::ABSENCE_TYPES[array_rand(self::ABSENCE_TYPES)]);
             $absence->setApproved(mt_rand(0, 1) === 1);
 
             $this->em->persist($absence);
