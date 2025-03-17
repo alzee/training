@@ -77,6 +77,7 @@ class TraineeCrudController extends AbstractCrudController
             TextField::new('military_pro')->hideOnIndex(),
             TextField::new('hometown')->hideOnIndex(),
             ArrayField::new('skills')->hideOnIndex(),
+            TextField::new('qishu'),
             AssociationField::new('training'), //->hideOnForm(),
             // UrlField::new('gallery_link')->onlyOnDetail()->setValue('adsaf'),
             //ChoiceField::new('skills')->setChoices(Trainee::$allSkills)->allowMultipleChoices(true)->hideOnIndex(),
@@ -111,6 +112,7 @@ class TraineeCrudController extends AbstractCrudController
         return $filters
             ->add(ChoiceFilter::new('area')->setChoices(array_flip(Trainee::$areas)))
             ->add('age')
+            ->add('qishu')
             ->add(ChoiceFilter::new('pstatus')->setChoices(array_flip(Trainee::$pstatuses))) //->setFormTypeOption('comparison_type', 'ArrayFilter'))
             ->add(ChoiceFilter::new('politics')->setChoices(array_flip(Trainee::$allPolitics)))
             // ->add(ChoiceFilter::new('skills')->setChoices(Trainee::$allSkills))
