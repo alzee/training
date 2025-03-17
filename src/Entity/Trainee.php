@@ -181,6 +181,11 @@ class Trainee
      */
     private $uid;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $qishu;
+
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
@@ -569,6 +574,18 @@ class Trainee
     public function setUid(?int $uid): self
     {
         $this->uid = $uid;
+
+        return $this;
+    }
+
+    public function getQishu(): ?string
+    {
+        return $this->qishu;
+    }
+
+    public function setQishu(?string $qishu): self
+    {
+        $this->qishu = $qishu;
 
         return $this;
     }
