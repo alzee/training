@@ -540,7 +540,7 @@ class Trainee
 
     public function getGallery(): ?array
     {
-        $dir = "images/gallery/" . $this->name . "/";
+        $dir = "images/gallery/" . $this->uid . $this->name . "/";
         $gallery = [];
 
         if (file_exists($dir)) {
