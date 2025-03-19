@@ -255,34 +255,35 @@ class ApiController extends AbstractController
             }
 
             $te->setName($v['A']);
-            if(isset($sexes[$v['B']])) {
-                $te->setSex($sexes[$v['B']]);
+            if(isset($sexes[$v['D']])) {
+                $te->setSex($sexes[$v['D']]);
             }
             else {
                 $te->setSex(0);
             }
-            if(isset($allPolitics[$v['C']])) {
-                $te->setPolitics($allPolitics[$v['C']]);
-            }
-            else {
-                $te->setPolitics(0);
-            }
-            $te->setPhone($v['D']);
-            $te->setIdnum($v['E']);
-            $te->setLevel($v['F']);
-            if(isset($degrees[$v['G']])) {
-                $te->setEdu($degrees[$v['G']]);
-            }
-            else {
-                $te->setEdu(0);
-            }
-            $te->setCompany($v['H']);
-            $te->setCompanyProperty($v['I']);
-            $te->setService($v['J']);
-            $te->setProLocal($v['K']);
-            $te->setMilitaryPro($v['L']);
-            $te->setHometown($v['M']);
-            $te->setQishu($v['N']);
+            //if(isset($allPolitics[$v['C']])) {
+            //    $te->setPolitics($allPolitics[$v['C']]);
+            //}
+            //else {
+            //    $te->setPolitics(0);
+            //}
+            // $te->setPhone($v['D']);
+            $te->setIdnum($v['C']);
+            $te->setLevel($v['B']);
+            //if(isset($degrees[$v['G']])) {
+            //    $te->setEdu($degrees[$v['G']]);
+            //}
+            //else {
+            //    $te->setEdu(0);
+            //}
+            $te->setCompany($v['E']);
+            // $te->setCompanyProperty($v['I']);
+            $te->setService($v['F']);
+            //$te->setProLocal($v['K']);
+            //$te->setMilitaryPro($v['L']);
+            //$te->setHometown($v['M']);
+            $te->setQishu($v['G']);
+            $te->setPolitics(0);
             $em->persist($te);
             $em->flush();
         }
