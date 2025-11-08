@@ -82,7 +82,7 @@ class DashboardController extends AbstractDashboardController
                 $ageGroup["46岁以上"] += 1;
             }
 
-            $degreeGroup[$v->getEdu()] += 1;
+            // $degreeGroup[$v->getEdu()] += 1;
         }
 
         $data = [
